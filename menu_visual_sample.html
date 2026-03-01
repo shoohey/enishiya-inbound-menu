@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酒日和 縁屋 — 活毛カニフルコース</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+  :root {
+    --bg: #1a1410; --bg2: #241e18; --bg3: #2d251c;
+    --gold: #c8a45e; --gold-l: #dfc07a; --gold-d: #8a7342;
+    --txt: #e8e0d4; --txt2: #a89b8a; --txt3: #7a6f62;
+    --red: #c45c4a; --border: #3a3229; --border-g: rgba(200,164,94,0.3);
+    --serif: 'Noto Serif JP','Hiragino Mincho ProN',serif;
+    --sans: 'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
+    --en: 'Cormorant Garamond',serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--txt); font-family:var(--sans); line-height:1.8; -webkit-font-smoothing:antialiased; }
+
+  /* TABS */
+  .tabs { position:sticky; top:0; z-index:100; background:rgba(26,20,16,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); display:flex; justify-content:center; }
+  .tab { padding:14px 28px; cursor:pointer; font:15px var(--sans); letter-spacing:2px; color:var(--txt3); border:none; border-bottom:2px solid transparent; background:none; transition:.3s; }
+  .tab:hover { color:var(--gold-l); }
+  .tab.on { color:var(--gold); border-bottom-color:var(--gold); }
+  .lc { display:none; } .lc.on { display:block; }
+
+  /* HEADER */
+  .hd { text-align:center; padding:60px 20px 44px; position:relative; }
+  .hd::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:60px; height:1px; background:var(--gold); }
+  .hd h1 { font:300 38px/1.3 var(--serif); letter-spacing:10px; margin-bottom:6px; }
+  .hd .sub { font:300 16px var(--en); letter-spacing:5px; color:var(--gold-d); margin-bottom:18px; }
+  .hd .badge { display:inline-block; padding:8px 24px; border:1px solid var(--border-g); font:500 15px var(--serif); letter-spacing:5px; color:var(--gold); }
+
+  .wrap { max-width:800px; margin:0 auto; padding:0 24px; }
+
+  /* SECTION */
+  .sec { padding:48px 0; border-bottom:1px solid var(--border); }
+  .sec:last-child { border-bottom:none; }
+
+  /* COURSE OVERVIEW */
+  .overview { background:var(--bg2); border:1px solid var(--border); padding:36px; position:relative; margin-bottom:32px; }
+  .overview::before { content:''; position:absolute; top:7px;left:7px;right:7px;bottom:7px; border:1px solid var(--border-g); pointer-events:none; }
+  .overview .price { font:400 32px var(--en); color:var(--gold); }
+  .overview .pn { font-size:14px; color:var(--txt3); margin-bottom:16px; }
+  .overview .note { font-size:14px; color:var(--txt2); line-height:2; }
+
+  /* COURSE FLOW */
+  .flow { position:relative; padding-left:28px; margin:20px 0 0; }
+  .flow::before { content:''; position:absolute; left:9px; top:6px; bottom:6px; width:1px; background:var(--border); }
+  .fi { position:relative; padding:10px 0; }
+  .fi::before { content:''; position:absolute; left:-23px; top:16px; width:8px; height:8px; border-radius:50%; background:var(--gold); border:2px solid var(--bg); }
+  .fi-n { font:400 16px var(--serif); letter-spacing:2px; }
+  .fi-e { font:300 13px var(--en); color:var(--txt3); }
+
+  /* DISH CARD */
+  .dish { margin-bottom:32px; }
+  .dish-head { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+  .dish-num { font:400 12px var(--en); letter-spacing:4px; color:var(--gold-d); }
+  .dish-ja { font:400 22px var(--serif); letter-spacing:3px; }
+  .dish-en { font:300 15px var(--en); color:var(--txt3); letter-spacing:1px; margin-bottom:14px; }
+
+  /* PHOTO */
+  .photo {
+    width:100%; aspect-ratio:16/10; border:1px solid var(--border);
+    background:var(--bg2); margin-bottom:16px;
+    position:relative; overflow:hidden; border-radius:4px;
+  }
+  .photo img {
+    width:100%; height:100%; object-fit:cover;
+    filter: brightness(1.08) contrast(1.08) saturate(1.2);
+    transition: transform .4s ease;
+  }
+  .photo:hover img { transform: scale(1.04); }
+  .photo.crop-center img { object-position: center center; }
+  .photo.crop-bottom img { object-position: center 70%; }
+  .photo.crop-top img { object-position: center 30%; }
+  .photo.crop-40 img { object-position: center 40%; }
+  .photo.crop-45 img { object-position: center 45%; }
+  .photo.crop-55 img { object-position: center 55%; }
+  .photo.crop-60 img { object-position: center 60%; }
+  .photo.crop-65 img { object-position: center 65%; }
+  .photo.crop-wide img { object-fit: contain; }
+  .photo::after {
+    position:absolute; bottom:8px; right:10px;
+    font:11px/1 var(--sans); letter-spacing:1px; color:rgba(255,255,255,.7);
+    background:rgba(0,0,0,.55); padding:4px 10px; border-radius:3px;
+    pointer-events:none;
+  }
+  #ja .photo::after { content:"※写真は一例です"; }
+  #en .photo::after { content:"※ Photo is for illustration"; }
+  #zh .photo::after { content:"※ 照片仅供参考"; }
+  #ko .photo::after { content:"※ 사진은 예시입니다"; }
+  .photo.crop-warm img { filter: brightness(1.12) contrast(1.05) saturate(1.35) sepia(0.08); }
+
+  /* TIKTOK CTA */
+  .tiktok-cta { text-align:center; margin-top:24px; }
+  .tiktok-btn {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 32px; border:1px solid var(--gold);
+    background:rgba(200,164,94,.08); color:var(--gold);
+    font:500 14px var(--sans); letter-spacing:2px;
+    text-decoration:none; border-radius:6px;
+    transition:all .3s ease; cursor:pointer;
+  }
+  .tiktok-btn:hover { background:var(--gold); color:var(--bg); }
+  .tiktok-btn svg { width:20px; height:20px; fill:currentColor; }
+
+  .dish-desc { font-size:15px; color:var(--txt2); line-height:2; margin-bottom:18px; }
+  .dish-detail { font-size:14px; color:var(--txt3); line-height:1.9; margin-bottom:18px; font-weight:300; }
+
+  /* HOW TO EAT */
+  .eat { background:var(--bg3); border:1px solid var(--border); padding:22px 24px; margin-bottom:14px; }
+  .eat-title { font:400 14px var(--serif); letter-spacing:3px; color:var(--gold-l); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .eat ol { list-style:none; padding:0; counter-reset:s; }
+  .eat li { counter-increment:s; display:flex; align-items:flex-start; gap:10px; padding:6px 0; font-size:14px; color:var(--txt2); line-height:1.8; }
+  .eat li::before { content:counter(s); font:400 17px var(--en); color:var(--gold); min-width:22px; text-align:center; }
+  .eat strong { color:var(--gold-l); font-weight:500; }
+  .eat .warn { color:var(--red); font-weight:500; }
+
+  /* SAKE PAIRING */
+  .sake { display:flex; align-items:flex-start; gap:10px; padding:12px 18px; border-left:2px solid var(--gold-d); background:rgba(200,164,94,.04); }
+  .sake-i { font-size:18px; min-width:22px; }
+  .sake-t { font-size:14px; color:var(--txt2); line-height:1.8; }
+  .sake-t b { color:var(--gold-l); font-weight:400; }
+
+  /* DRINK SECTION */
+  .phrase { background:rgba(200,164,94,.06); border:1px solid var(--border-g); padding:18px 22px; text-align:center; margin:14px 0; }
+  .phrase .ja { font:400 19px var(--serif); letter-spacing:2px; margin-bottom:3px; }
+  .phrase .rd { font:italic 300 14px var(--en); color:var(--txt3); margin-bottom:3px; }
+  .phrase .mn { font-size:13px; color:var(--txt2); }
+
+  .dcard { background:var(--bg2); border:1px solid var(--border); padding:24px; margin-bottom:14px; }
+  .dcard-t { font:400 16px var(--serif); color:var(--gold-l); letter-spacing:2px; margin-bottom:12px; }
+  .di { display:flex; justify-content:space-between; align-items:baseline; padding:8px 0; border-bottom:1px dotted var(--border); }
+  .di:last-child { border-bottom:none; }
+  .di-n { font-size:15px; }
+  .di-ne { font:300 13px var(--en); color:var(--txt3); }
+  .di-d { font-size:13px; color:var(--txt2); margin-top:2px; }
+
+  .temp-bar { display:flex; gap:0; margin:18px 0; border:1px solid var(--border); overflow:hidden; }
+  .ti { flex:1; padding:14px 6px; text-align:center; border-right:1px solid var(--border); position:relative; }
+  .ti:last-child { border-right:none; }
+  .ti.best { background:rgba(200,164,94,.1); }
+  .ti.best::after { content:'★'; position:absolute; top:4px; right:6px; font-size:10px; color:var(--gold); }
+  .ti-j { font:400 15px var(--serif); display:block; }
+  .ti-e { font:300 12px var(--en); color:var(--txt3); display:block; margin-top:2px; }
+
+  .allergy { background:var(--bg2); border:1px solid var(--border); padding:24px; margin-top:16px; }
+  .al-g { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .al-t { display:flex; align-items:center; gap:6px; background:var(--bg3); padding:6px 14px; border-radius:4px; font-size:14px; color:var(--txt2); }
+  .al-p { margin-top:16px; padding:10px; text-align:center; background:rgba(200,164,94,.05); border:1px solid var(--border-g); }
+  .al-p .ja { font:400 17px var(--serif); }
+  .al-p .en { font:300 13px var(--en); color:var(--txt3); }
+
+  .ft { text-align:center; padding:40px 20px; font-size:13px; color:var(--txt3); letter-spacing:1px; line-height:2.2; }
+
+  @media(max-width:600px) { .wrap{padding:0 16px;} .overview,.dish,.eat,.dcard{padding:20px;} .temp-bar{flex-direction:column;} }
+  @media print { .tabs{display:none;} body{background:#fff;color:#1a1410;} .photo img{filter:none;} }
+</style>
+</head>
+<body>
+
+<nav class="tabs">
+  <button class="tab on" onclick="sw('ja')">日本語</button>
+  <button class="tab" onclick="sw('en')">ENGLISH</button>
+  <button class="tab" onclick="sw('zh')">中文</button>
+  <button class="tab" onclick="sw('ko')">한국어</button>
+</nav>
+
+<!-- ============================================================ -->
+<!-- 日本語 -->
+<!-- ============================================================ -->
+<div id="ja" class="lc on">
+<header class="hd">
+  <h1>酒日和 縁屋</h1>
+  <div class="sub">E N I S H I Y A</div>
+  <div class="badge">活 毛 カ ニ フ ル コ ー ス</div>
+</header>
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section class="sec">
+  <div class="overview">
+    <div class="price">¥16,500</div>
+    <div class="pn">お一人様（税込）｜＋¥2,750で飲み放題</div>
+    <div class="note">※ 2名様より ／ 3日前までにご予約ください</div>
+  </div>
+  <div style="font:400 17px var(--serif); color:var(--gold-l); letter-spacing:3px; margin-bottom:12px;">コースの流れ（全11品）</div>
+  <div class="flow">
+    <div class="fi"><span class="fi-n">一、先付け</span></div>
+    <div class="fi"><span class="fi-n">二、毛蟹の茶碗蒸し</span></div>
+    <div class="fi"><span class="fi-n">三、旬魚 お刺身3点盛り</span></div>
+    <div class="fi"><span class="fi-n">四、活カニ刺身（2本）</span></div>
+    <div class="fi"><span class="fi-n">五、カニ味噌しゃぶしゃぶ（2本）</span></div>
+    <div class="fi"><span class="fi-n">六、カニ味噌共和え</span></div>
+    <div class="fi"><span class="fi-n">七、甲羅酒</span></div>
+    <div class="fi"><span class="fi-n">八、毛蟹醤油漬け</span></div>
+    <div class="fi"><span class="fi-n">九、天ぷら</span></div>
+    <div class="fi"><span class="fi-n">十、カニ雑炊</span></div>
+    <div class="fi"><span class="fi-n">十一、水菓子</span></div>
+  </div>
+  <div class="tiktok-cta">
+    <a class="tiktok-btn" href="https://youtube.com/shorts/Y-RmxSu0lwY?si=EcCz1infP9nXb2C9" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+      毛蟹の情報をみる
+    </a>
+  </div>
+</section>
+
+<!-- ① 先付け -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— FIRST COURSE —</div>
+    <div class="dish-ja">先付け</div>
+    <div class="dish-en">Appetizer — "Sakizuke"</div>
+    <div class="photo crop-40"><img src="先付け.jpg" alt="先付け"></div>
+    <div class="dish-desc">
+      コースの始まりを告げる一品。季節により内容が変わります。<br>
+      （一例：煮つぶ — 北海道産のつぶ貝をじっくり煮込んだもの）
+    </div>
+    <div class="eat">
+      <div class="eat-title">🐚 煮つぶの食べ方</div>
+      <ol>
+        <li>つぶ貝に<strong>楊枝が刺さっています</strong></li>
+        <li>楊枝をくるくる回しながら<strong>身を引き出して</strong>ください</li>
+        <li>煮汁にも旨みが凝縮されています — 一緒にお楽しみください</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ② 茶碗蒸し -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— SECOND COURSE —</div>
+    <div class="dish-ja">毛蟹の茶碗蒸し</div>
+    <div class="dish-en">Horsehair Crab Chawanmushi — Savory Egg Custard</div>
+    <div class="photo crop-center"><img src="茶碗蒸し.jpg" alt="毛蟹の茶碗蒸し"></div>
+    <div class="dish-desc">
+      毛蟹の殻から丁寧にとったお出汁で作る茶碗蒸し。<br>
+      卵は北海道・栗山町の「とうきび卵」を使用。中にはお野菜とカニの身が入っています。<br>
+      上には銀餡（ぎんあん）がかかっています。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🥄 食べ方</div>
+      <ol>
+        <li><strong class="warn">銀餡が熱いのでお気をつけください</strong></li>
+        <li>スプーンでお召し上がりください</li>
+        <li>中のお野菜とカニの身も一緒にどうぞ</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ②.5 お刺身3点盛り -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— THIRD COURSE —</div>
+    <div class="dish-ja">旬魚 お刺身3点盛り</div>
+    <div class="dish-en">Seasonal Sashimi Trio</div>
+    <div class="photo crop-45"><img src="旬魚 お刺身3点盛り.jpg" alt="旬魚 お刺身3点盛り"></div>
+    <div class="dish-desc">
+      北海道の海から届くその日一番の鮮魚を3種盛り合わせ。<br>
+      内容は日によって変わります。（一例：本鮪、ヒラメ、シマアジなど）
+    </div>
+  </div>
+</section>
+
+<!-- ③ 蟹刺し -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— FOURTH COURSE —</div>
+    <div class="dish-ja">活カニ刺身（2本）</div>
+    <div class="dish-en">Live Crab Sashimi — 2 Legs per Person</div>
+    <div class="photo crop-center"><img src="カニ刺身.jpg" alt="活カニ刺身"></div>
+    <div class="dish-desc">
+      活きた毛蟹をその場で捌いたお刺身。お一人様2本です。<br>
+      蟹酢は自家製の煎り酒とポン酢で割った特製ブレンドです。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🦀 食べ方 — 2本それぞれの楽しみ方</div>
+      <ol>
+        <li><strong>1本目：</strong>そのまま蟹酢につけてお召し上がりください</li>
+        <li><strong>2本目：</strong>蟹酢の中に<strong>すだちを搾って</strong>からお召し上がりください</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 蟹味噌しゃぶしゃぶ -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— FIFTH COURSE —</div>
+    <div class="dish-ja">カニ味噌しゃぶしゃぶ（2本）</div>
+    <div class="dish-en">Crab Miso Shabu-Shabu — 2 Legs per Person</div>
+    <div class="photo crop-center"><img src="カニ味噌しゃぶしゃぶ.jpg" alt="カニ味噌しゃぶしゃぶ"></div>
+    <div class="dish-desc">
+      飛騨コンロの上で温められた毛蟹の味噌と蟹脚2本が届きます。<br>
+      蟹脚を蟹味噌の中でしゃぶしゃぶして楽しみます。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🦀 食べ方 — とても大事！</div>
+      <ol>
+        <li>蟹味噌はもう温まった状態で届きます</li>
+        <li><strong>蟹脚2本</strong>を味噌の中に入れます</li>
+        <li><strong>20〜30秒ほどしっかりと</strong>味噌を絡めてお召し上がりください</li>
+        <li>蟹味噌は<strong>この後の「共和え」と「甲羅酒」にも使います</strong>ので、<br>全部は使い切らないでください</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 共和え -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— SIXTH COURSE —</div>
+    <div class="dish-ja">カニ味噌共和え</div>
+    <div class="dish-en">Crab Meat Mixed with Crab Miso — "Tomo-ae"</div>
+    <div class="photo crop-center"><img src="S__96698388_0.jpg" alt="カニ味噌共和え"></div>
+    <div class="dish-desc">
+      大将が丁寧にほぐした毛蟹の身が届きます。<br>
+      しゃぶしゃぶで残った蟹味噌を合わせて「共和え」にします。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🦀 食べ方</div>
+      <ol>
+        <li>毛蟹のほぐし身のお皿が届きます</li>
+        <li><strong>残った蟹味噌をすべて</strong>ほぐし身の上にかけてください</li>
+        <li>よく混ぜて「共和え」としてお召し上がりください</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 甲羅酒 -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— SEVENTH COURSE —</div>
+    <div class="dish-ja">甲羅酒</div>
+    <div class="dish-en">Shell Sake — "Koura-zake"</div>
+    <div class="photo crop-center"><img src="甲羅酒.jpg" alt="甲羅酒"></div>
+    <div class="dish-desc">
+      蟹味噌を使い切った甲羅に、熱燗を注いで作る「甲羅酒」。<br>
+      甲羅に残った蟹味噌が溶け出し、世界に一つだけの贅沢な一杯になります。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🍶 楽しみ方</div>
+      <ol>
+        <li>共和えの前に、<strong>蟹味噌はしっかりと全てお召し上がりください</strong></li>
+        <li>甲羅の中の味噌がなくなったら、スタッフが熱燗を注ぎます</li>
+        <li>甲羅に残った蟹味噌を<strong>溶かしながら</strong>お飲みください</li>
+        <li>蟹の旨みが凝縮された、通だけが知る至福の一杯です</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ 毛蟹醤油漬け -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— EIGHTH COURSE —</div>
+    <div class="dish-ja">毛蟹醤油漬け</div>
+    <div class="dish-en">Soy-Marinated Horsehair Crab — "Kegani Shoyu-zuke"</div>
+    <div class="photo crop-55"><img src="カニ醤油漬け.jpg" alt="毛蟹醤油漬け"></div>
+    <div class="dish-desc">
+      毛蟹の身を、自家製の醤油だれに漬け込んだもの。<br>
+      生のお刺身とはまた違う、味が染み込んだ深い味わいをお楽しみください。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🦀 食べ方</div>
+      <ol>
+        <li><strong>すだちを搾って</strong>カニにかけてください</li>
+        <li><strong>わさびを添えて</strong>お召し上がりください</li>
+        <li>すでに味が入っているので、醤油は不要です</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ 天ぷら -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— NINTH COURSE —</div>
+    <div class="dish-ja">天ぷら</div>
+    <div class="dish-en">Crab & Seasonal Vegetable Tempura</div>
+    <div class="photo crop-center"><img src="天ぷら.jpg" alt="天ぷら"></div>
+    <div class="dish-desc">
+      毛蟹の天ぷらと、旬の山菜の天ぷらの盛り合わせです。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🦀 食べ方</div>
+      <ol>
+        <li>毛蟹の天ぷら：<strong class="warn">爪の先は硬いので食べられません</strong></li>
+        <li><strong>白い身の部分だけ</strong>お召し上がりください</li>
+        <li>お塩でも天つゆでも、お好みでどうぞ</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ 雑炊 -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— TENTH COURSE —</div>
+    <div class="dish-ja">カニ雑炊</div>
+    <div class="dish-en">Crab Rice Porridge — "Zosui"</div>
+    <div class="photo crop-60 crop-warm"><img src="かにぞうすい.jpg" alt="カニ雑炊"></div>
+    <div class="dish-desc">
+      毛蟹の殻から丁寧にとったお出汁に、干し貝柱・桜エビを加えた贅沢な雑炊。<br>
+      卵は茶碗蒸しでも使用した、栗山町のとうきび卵を使っています。
+    </div>
+    <div class="eat">
+      <div class="eat-title">🥄 食べ方</div>
+      <ol>
+        <li>スプーンでお召し上がりください</li>
+        <li>蟹の旨みをすべて吸い込んだ〆の一品です</li>
+        <li>最後の一滴まで残さずどうぞ</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ 水菓子 -->
+<section class="sec">
+  <div class="dish">
+    <div class="dish-num">— DESSERT —</div>
+    <div class="dish-ja">水菓子</div>
+    <div class="dish-en">Seasonal Dessert — "Mizugashi"</div>
+    <div class="photo crop-45"><img src="水菓子.jpg" alt="水菓子"></div>
+    <div class="dish-desc">
+      コースの最後を飾る季節の甘味。<br>
+      内容は季節により変わります。
+    </div>
+  </div>
+</section>
+
+<!-- ALLERGY -->
+<section class="sec">
+  <div style="font:400 20px var(--serif); letter-spacing:3px; margin-bottom:12px;">アレルギー情報</div>
+  <div class="allergy">
+    <div class="al-g">
+      <div class="al-t"><span>🦀</span>甲殻類</div><div class="al-t"><span>🐟</span>魚介</div><div class="al-t"><span>🥚</span>卵</div><div class="al-t"><span>🫘</span>大豆</div><div class="al-t"><span>🌾</span>小麦</div><div class="al-t"><span>🦐</span>エビ</div>
+    </div>
+    <div class="al-p"><div class="ja">「アレルギーがあります」</div><div class="en">"I have an allergy"</div></div>
+  </div>
+</section>
+
+</div>
+<div class="ft">酒日和 縁屋 — 札幌市中央区南6条西3丁目 アクミツビル2F — TEL 011-511-7667</div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- ENGLISH -->
+<!-- ============================================================ -->
+<div id="en" class="lc">
+<header class="hd">
+  <h1>酒日和 縁屋</h1>
+  <div class="sub">E N I S H I Y A</div>
+  <div class="badge">LIVE HORSEHAIR CRAB — FULL COURSE</div>
+</header>
+<div class="wrap">
+
+<section class="sec">
+  <div class="overview">
+    <div class="price">¥16,500</div>
+    <div class="pn">per person (tax incl.) ｜ +¥2,750 for all-you-can-drink</div>
+    <div class="note">※ Min. 2 guests ／ Reserve 3 days in advance</div>
+  </div>
+  <div style="font:400 17px var(--serif); color:var(--gold-l); letter-spacing:3px; margin-bottom:12px;">Course Flow (11 dishes)</div>
+  <div class="flow">
+    <div class="fi"><span class="fi-n">1. 先付け</span><span class="fi-e"> — Appetizer</span></div>
+    <div class="fi"><span class="fi-n">2. 茶碗蒸し</span><span class="fi-e"> — Crab Egg Custard</span></div>
+    <div class="fi"><span class="fi-n">3. お刺身3点盛り</span><span class="fi-e"> — Seasonal Sashimi</span></div>
+    <div class="fi"><span class="fi-n">4. 活カニ刺身</span><span class="fi-e"> — Live Crab Sashimi (2 pcs)</span></div>
+    <div class="fi"><span class="fi-n">5. カニ味噌しゃぶしゃぶ</span><span class="fi-e"> — Crab Miso Shabu-Shabu (2 pcs)</span></div>
+    <div class="fi"><span class="fi-n">6. カニ味噌共和え</span><span class="fi-e"> — Crab Meat × Miso Mix</span></div>
+    <div class="fi"><span class="fi-n">7. 甲羅酒</span><span class="fi-e"> — Hot Sake in Crab Shell</span></div>
+    <div class="fi"><span class="fi-n">8. 毛蟹醤油漬け</span><span class="fi-e"> — Soy-Marinated Crab</span></div>
+    <div class="fi"><span class="fi-n">9. 天ぷら</span><span class="fi-e"> — Crab & Vegetable Tempura</span></div>
+    <div class="fi"><span class="fi-n">10. カニ雑炊</span><span class="fi-e"> — Crab Rice Porridge</span></div>
+    <div class="fi"><span class="fi-n">11. 水菓子</span><span class="fi-e"> — Dessert</span></div>
+  </div>
+  <div class="tiktok-cta">
+    <a class="tiktok-btn" href="https://youtube.com/shorts/Y-RmxSu0lwY?si=EcCz1infP9nXb2C9" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+      Learn about Horsehair Crab
+    </a>
+  </div>
+</section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— APPETIZER —</div>
+  <div class="dish-ja">先付け</div>
+  <div class="dish-en">Appetizer — "Sakizuke"</div>
+  <div class="photo crop-40"><img src="先付け.jpg" alt="Appetizer"></div>
+  <div class="dish-desc">The opening dish of the course. Changes with the season.<br>(Example: Simmered Whelk "Nitsubu" — Hokkaido sea snails slowly simmered)</div>
+  <div class="eat"><div class="eat-title">🐚 How to Eat Nitsubu</div><ol>
+    <li>A <strong>toothpick is inserted</strong> into the whelk</li>
+    <li><strong>Twist the toothpick</strong> and gently pull the meat out in a spiral</li>
+    <li>The simmering broth is packed with flavor — enjoy it together</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— CHAWANMUSHI —</div>
+  <div class="dish-ja">毛蟹の茶碗蒸し</div>
+  <div class="dish-en">Crab Egg Custard</div>
+  <div class="photo crop-center"><img src="茶碗蒸し.jpg" alt="Crab Chawanmushi"></div>
+  <div class="dish-desc">Savory egg custard made with broth from crab shells. Eggs are premium "Tokibi Tamago" (corn-fed) from Kuriyama, Hokkaido. Contains vegetables and crab meat inside. Topped with a hot silver sauce (gin-an).</div>
+  <div class="eat"><div class="eat-title">🥄 How to Eat</div><ol>
+    <li><strong class="warn">Caution: the sauce on top is very hot!</strong></li>
+    <li>Eat with the spoon provided</li>
+    <li>Enjoy the vegetables and crab meat hidden inside</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— SEASONAL SASHIMI —</div>
+  <div class="dish-ja">旬魚 お刺身3点盛り</div>
+  <div class="dish-en">Seasonal Sashimi Trio</div>
+  <div class="photo crop-45"><img src="旬魚 お刺身3点盛り.jpg" alt="Seasonal Sashimi"></div>
+  <div class="dish-desc">Three kinds of the freshest seasonal fish from Hokkaido's seas.<br>Selection changes daily. (Example: Bluefin Tuna, Flounder, Striped Jack, etc.)</div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— CRAB SASHIMI —</div>
+  <div class="dish-ja">活カニ刺身（2本）</div>
+  <div class="dish-en">Live Crab Sashimi — 2 Legs per Person</div>
+  <div class="photo crop-center"><img src="カニ刺身.jpg" alt="Live Crab Sashimi"></div>
+  <div class="dish-desc">Freshly prepared live crab sashimi. 2 legs per person.<br>Served with "kani-zu" — a special blend of homemade iri-zake (sake-based sauce) and ponzu.</div>
+  <div class="eat"><div class="eat-title">🦀 How to Eat — Each Leg Has Its Own Way!</div><ol>
+    <li><strong>Leg 1:</strong> Dip directly into the kani-zu sauce</li>
+    <li><strong>Leg 2:</strong> Squeeze <strong>sudachi citrus</strong> into the kani-zu, then dip</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— CRAB MISO SHABU-SHABU —</div>
+  <div class="dish-ja">カニ味噌しゃぶしゃぶ（2本）</div>
+  <div class="dish-en">Cook Your Crab in Hot Crab Miso — 2 Legs</div>
+  <div class="photo crop-center"><img src="カニ味噌しゃぶしゃぶ.jpg" alt="Crab Miso Shabu-Shabu"></div>
+  <div class="dish-desc">A small pot of warm crab miso and 2 crab legs arrive on a Hida tabletop grill. Swish the legs in the rich crab miso!</div>
+  <div class="eat"><div class="eat-title">🦀 How to Eat — Important!</div><ol>
+    <li>The crab miso is already warmed and ready</li>
+    <li>Place your <strong>2 crab legs</strong> into the miso</li>
+    <li>Cook for <strong>about 20–30 seconds</strong>, making sure the miso coats the meat well</li>
+    <li><strong>Don't use all the miso!</strong> You'll need some for the next dish (Tomo-ae) and Shell Sake</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— TOMO-AE —</div>
+  <div class="dish-ja">カニ味噌共和え</div>
+  <div class="dish-en">Picked Crab Meat Mixed with Remaining Miso</div>
+  <div class="photo crop-center"><img src="S__96698388_0.jpg" alt="Crab Miso Tomo-ae"></div>
+  <div class="dish-desc">A plate of carefully hand-picked crab meat arrives. The leftover crab miso from shabu-shabu completes this dish.</div>
+  <div class="eat"><div class="eat-title">🦀 How to Eat</div><ol>
+    <li>A plate of picked crab meat (hogushi-mi) is served</li>
+    <li><strong>Pour ALL the remaining crab miso</strong> over the crab meat</li>
+    <li>Mix well and enjoy — this is "Tomo-ae" (together mix)</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— KOURA-ZAKE —</div>
+  <div class="dish-ja">甲羅酒</div>
+  <div class="dish-en">Hot Sake Poured into the Crab Shell</div>
+  <div class="photo crop-center"><img src="甲羅酒.jpg" alt="Koura-zake Shell Sake"></div>
+  <div class="dish-desc">After the miso is gone, hot sake (atsukan) is poured into the crab shell. The sake dissolves the remaining miso clinging to the shell, creating a one-of-a-kind cup.</div>
+  <div class="eat"><div class="eat-title">🍶 How to Enjoy</div><ol>
+    <li>Make sure you've <strong>eaten all the crab miso first</strong></li>
+    <li>Staff will pour hot sake into the empty shell</li>
+    <li>Swirl gently to <strong>dissolve the miso stuck to the shell</strong></li>
+    <li>Drink and savor — a connoisseur's ultimate pleasure</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— SHOYU-ZUKE —</div>
+  <div class="dish-ja">毛蟹醤油漬け</div>
+  <div class="dish-en">Soy-Marinated Horsehair Crab — "Kegani Shoyu-zuke"</div>
+  <div class="photo crop-55"><img src="カニ醤油漬け.jpg" alt="Soy-Marinated Crab"></div>
+  <div class="dish-desc">Crab meat marinated in a house-made soy sauce blend. A completely different flavor from the raw sashimi.</div>
+  <div class="eat"><div class="eat-title">🦀 How to Eat</div><ol>
+    <li><strong>Squeeze sudachi citrus</strong> over the crab</li>
+    <li>Add <strong>wasabi</strong> on top</li>
+    <li>No soy sauce needed — the flavor is already infused</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— TEMPURA —</div>
+  <div class="dish-ja">天ぷら</div>
+  <div class="dish-en">Crab & Seasonal Mountain Vegetable Tempura</div>
+  <div class="photo crop-center"><img src="天ぷら.jpg" alt="Crab Tempura"></div>
+  <div class="dish-desc">Crispy tempura of horsehair crab and seasonal wild vegetables.</div>
+  <div class="eat"><div class="eat-title">🦀 How to Eat</div><ol>
+    <li><strong class="warn">Crab claws: the tip is hard and cannot be eaten!</strong></li>
+    <li>Eat only the <strong>white meat part</strong></li>
+    <li>Dip in salt or tentsuyu sauce — your choice</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— ZOSUI —</div>
+  <div class="dish-ja">カニ雑炊</div>
+  <div class="dish-en">Crab Rice Porridge — The Grand Finale</div>
+  <div class="photo crop-60 crop-warm"><img src="かにぞうすい.jpg" alt="Crab Zosui"></div>
+  <div class="dish-desc">Rich porridge made with broth from the crab shells, enriched with dried scallops and sakura shrimp. The eggs are the same premium Tokibi Tamago used in the chawanmushi.</div>
+  <div class="eat"><div class="eat-title">🥄 How to Eat</div><ol>
+    <li>Eat with the spoon provided</li>
+    <li>This is the essence of the entire crab, concentrated in every grain</li>
+    <li>Please enjoy every last drop!</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— DESSERT —</div>
+  <div class="dish-ja">水菓子</div>
+  <div class="dish-en">Seasonal Dessert — "Mizugashi"</div>
+  <div class="photo crop-45"><img src="水菓子.jpg" alt="Seasonal Dessert"></div>
+  <div class="dish-desc">A seasonal sweet to close the course.<br>The selection changes with the season.</div>
+</div></section>
+
+<section class="sec">
+  <div style="font:400 20px var(--serif); letter-spacing:3px; margin-bottom:12px;">Allergy Information</div>
+  <div class="allergy">
+    <div class="al-g"><div class="al-t"><span>🦀</span>Crustaceans</div><div class="al-t"><span>🐟</span>Fish</div><div class="al-t"><span>🥚</span>Egg</div><div class="al-t"><span>🫘</span>Soy</div><div class="al-t"><span>🌾</span>Wheat</div><div class="al-t"><span>🦐</span>Shrimp</div></div>
+    <div class="al-p"><div class="ja">「アレルギーがあります」</div><div class="en">"I have an allergy"</div></div>
+  </div>
+</section>
+
+</div>
+<div class="ft">酒日和 縁屋 — Minami 6-jo Nishi 3, Chuo-ku, Sapporo — TEL 011-511-7667</div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- 中文 -->
+<!-- ============================================================ -->
+<div id="zh" class="lc">
+<header class="hd">
+  <h1>酒日和 縁屋</h1>
+  <div class="sub">E N I S H I Y A</div>
+  <div class="badge">活 毛 蟹 全 套 料 理</div>
+</header>
+<div class="wrap">
+
+<section class="sec">
+  <div class="overview">
+    <div class="price">¥16,500</div>
+    <div class="pn">每位（含税）｜+¥2,750 无限畅饮</div>
+    <div class="note">※ 2位起订 ／ 请提前3天预约</div>
+  </div>
+  <div style="font:400 17px var(--serif); color:var(--gold-l); letter-spacing:3px; margin-bottom:12px;">套餐流程（共11道）</div>
+  <div class="flow">
+    <div class="fi"><span class="fi-n">一、前菜</span></div>
+    <div class="fi"><span class="fi-n">二、毛蟹茶碗蒸（蒸蛋羹）</span></div>
+    <div class="fi"><span class="fi-n">三、时令鱼刺身3种</span></div>
+    <div class="fi"><span class="fi-n">四、活毛蟹刺身（每人2根）</span></div>
+    <div class="fi"><span class="fi-n">五、蟹黄涮涮锅（2根）</span></div>
+    <div class="fi"><span class="fi-n">六、蟹黄拌蟹肉</span></div>
+    <div class="fi"><span class="fi-n">七、甲壳酒</span></div>
+    <div class="fi"><span class="fi-n">八、蟹肉酱油渍</span></div>
+    <div class="fi"><span class="fi-n">九、天妇罗</span></div>
+    <div class="fi"><span class="fi-n">十、蟹肉杂炊</span></div>
+    <div class="fi"><span class="fi-n">十一、甜品</span></div>
+  </div>
+  <div class="tiktok-cta">
+    <a class="tiktok-btn" href="https://youtube.com/shorts/Y-RmxSu0lwY?si=EcCz1infP9nXb2C9" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+      了解毛蟹
+    </a>
+  </div>
+</section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">前菜</div><div class="dish-en">Appetizer — "Sakizuke"</div>
+  <div class="photo crop-40"><img src="先付け.jpg" alt="前菜"></div>
+  <div class="dish-desc">开启套餐的第一道菜。内容随季节变化。<br>（一例：煮海螺 — 北海道产海螺慢炖入味）</div>
+  <div class="eat"><div class="eat-title">🐚 煮海螺吃法</div><ol>
+    <li>海螺上<strong>插着牙签</strong></li>
+    <li><strong>旋转牙签</strong>，将螺肉螺旋状拉出</li>
+    <li>炖汁也充满鲜味 — 请一起品尝</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">毛蟹茶碗蒸</div><div class="dish-en">Crab Egg Custard — 蒸蛋羹</div>
+  <div class="photo crop-center"><img src="茶碗蒸し.jpg" alt="蟹肉蒸蛋羹"></div>
+  <div class="dish-desc">用毛蟹壳熬制的高汤制成的蒸蛋羹。鸡蛋采用北海道栗山町的「玉米蛋」。里面有蔬菜和蟹肉。上面淋有银馅（很烫！）。</div>
+  <div class="eat"><div class="eat-title">🥄 吃法</div><ol>
+    <li><strong class="warn">上面的银馅非常烫，请小心！</strong></li>
+    <li>请用勺子食用</li>
+    <li>里面的蔬菜和蟹肉一起享用</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">时令鱼刺身3种</div><div class="dish-en">Seasonal Sashimi Trio</div>
+  <div class="photo crop-45"><img src="旬魚 お刺身3点盛り.jpg" alt="时令鱼刺身"></div>
+  <div class="dish-desc">精选北海道当日最新鲜的3种时令鱼，拼盘呈上。<br>内容每日不同。（一例：蓝鳍金枪鱼、比目鱼、条纹鲹等）</div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">活毛蟹刺身（2根）</div><div class="dish-en">Live Crab Sashimi — 每人2根</div>
+  <div class="photo crop-center"><img src="カニ刺身.jpg" alt="活蟹刺身"></div>
+  <div class="dish-desc">现场处理的活毛蟹刺身，每人2根。<br>搭配的蟹醋是自制的煎酒与柑橘醋调配而成。</div>
+  <div class="eat"><div class="eat-title">🦀 吃法 — 每根吃法不同！</div><ol>
+    <li><strong>第1根：</strong>直接蘸蟹醋食用</li>
+    <li><strong>第2根：</strong>将<strong>酢橘汁挤入</strong>蟹醋中，再蘸着吃</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">蟹黄涮涮锅（2根）</div><div class="dish-en">Crab Miso Shabu-Shabu</div>
+  <div class="photo crop-center"><img src="カニ味噌しゃぶしゃぶ.jpg" alt="蟹黄涮涮锅"></div>
+  <div class="dish-desc">小炉上会送来已经加热好的毛蟹黄和2根蟹腿。将蟹腿在蟹黄中涮着吃。</div>
+  <div class="eat"><div class="eat-title">🦀 吃法 — 重要！</div><ol>
+    <li>蟹黄已经是加热好的状态</li>
+    <li>将<strong>2根蟹腿</strong>放入蟹黄中</li>
+    <li><strong>涮约20~30秒</strong>，让蟹黄充分包裹蟹肉后食用</li>
+    <li><strong>不要用完所有蟹黄！</strong>后面的「拌蟹肉」和「甲壳酒」还要用</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">蟹黄拌蟹肉</div><div class="dish-en">Crab Meat × Miso Mix — "Tomo-ae"</div>
+  <div class="photo crop-center"><img src="S__96698388_0.jpg" alt="蟹黄拌蟹肉"></div>
+  <div class="dish-desc">手拆蟹肉登场。将涮涮锅中剩余的蟹黄全部浇上去，混合食用。</div>
+  <div class="eat"><div class="eat-title">🦀 吃法</div><ol>
+    <li>会送上一盘手拆蟹肉</li>
+    <li>将<strong>剩余的蟹黄全部</strong>浇在蟹肉上</li>
+    <li>充分搅拌后享用 — 这就是「共和え」（混合拌）</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">甲壳酒</div><div class="dish-en">Shell Sake — "Koura-zake"</div>
+  <div class="photo crop-center"><img src="甲羅酒.jpg" alt="甲壳酒"></div>
+  <div class="dish-desc">蟹黄用完后，将热清酒倒入蟹壳中。残留在壳上的蟹黄溶入酒中，成为独一无二的一杯。</div>
+  <div class="eat"><div class="eat-title">🍶 享用方法</div><ol>
+    <li>请先<strong>将蟹黄吃干净</strong></li>
+    <li>工作人员会将热清酒倒入空蟹壳中</li>
+    <li><strong>一边溶化壳上残留的蟹黄一边饮用</strong></li>
+    <li>行家才知道的至高享受</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">蟹肉酱油渍</div><div class="dish-en">Soy-Marinated Crab — "Shoyu-zuke"</div>
+  <div class="photo crop-55"><img src="カニ醤油漬け.jpg" alt="蟹肉酱油渍"></div>
+  <div class="dish-desc">将蟹肉用自制酱油调味液腌渍入味。与生食刺身完全不同的深层风味。</div>
+  <div class="eat"><div class="eat-title">🦀 吃法</div><ol>
+    <li>将<strong>酢橘汁挤在</strong>蟹肉上</li>
+    <li>配上<strong>芥末</strong>食用</li>
+    <li>已经入味，无需再蘸酱油</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">天妇罗</div><div class="dish-en">Crab & Seasonal Vegetable Tempura</div>
+  <div class="photo crop-center"><img src="天ぷら.jpg" alt="毛蟹天妇罗"></div>
+  <div class="dish-desc">毛蟹天妇罗和时令山菜天妇罗拼盘。</div>
+  <div class="eat"><div class="eat-title">🦀 吃法</div><ol>
+    <li><strong class="warn">蟹钳尖端很硬，不能食用！</strong></li>
+    <li>只吃<strong>白色蟹肉部分</strong></li>
+    <li>蘸盐或天妇罗汁，随您喜好</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">蟹肉杂炊</div><div class="dish-en">Crab Rice Porridge — 收尾</div>
+  <div class="photo crop-60 crop-warm"><img src="かにぞうすい.jpg" alt="蟹肉杂炊"></div>
+  <div class="dish-desc">用毛蟹壳熬制的高汤，加入干贝柱、樱花虾煮成的奢华粥品。鸡蛋同样采用茶碗蒸中使用的玉米蛋。</div>
+  <div class="eat"><div class="eat-title">🥄 吃法</div><ol>
+    <li>请用勺子食用</li>
+    <li>一整只蟹的精华，浓缩在每一粒米中</li>
+    <li>请喝到最后一滴！</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— DESSERT —</div>
+  <div class="dish-ja">水菓子</div>
+  <div class="dish-en">时令甜品 — "Mizugashi"</div>
+  <div class="photo crop-45"><img src="水菓子.jpg" alt="时令甜品"></div>
+  <div class="dish-desc">为套餐画上完美句号的时令甜品。<br>内容随季节变化。</div>
+</div></section>
+
+<section class="sec">
+  <div style="font:400 20px var(--serif); letter-spacing:3px; margin-bottom:12px;">过敏信息</div>
+  <div class="allergy"><div class="al-g"><div class="al-t"><span>🦀</span>甲壳类</div><div class="al-t"><span>🐟</span>鱼类</div><div class="al-t"><span>🥚</span>鸡蛋</div><div class="al-t"><span>🫘</span>大豆</div><div class="al-t"><span>🌾</span>小麦</div><div class="al-t"><span>🦐</span>虾</div></div>
+  <div class="al-p"><div class="ja">「アレルギーがあります」</div><div class="en">"我有过敏"</div></div></div>
+</section>
+
+</div>
+<div class="ft">酒日和 縁屋 — 札幌市中央区南6条西3丁目 — TEL 011-511-7667</div>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- 한국어 -->
+<!-- ============================================================ -->
+<div id="ko" class="lc">
+<header class="hd">
+  <h1>酒日和 縁屋</h1>
+  <div class="sub">E N I S H I Y A</div>
+  <div class="badge">활 털 게 풀 코 스</div>
+</header>
+<div class="wrap">
+
+<section class="sec">
+  <div class="overview">
+    <div class="price">¥16,500</div>
+    <div class="pn">1인 (세금포함) ｜ +¥2,750 무한리필</div>
+    <div class="note">※ 2인부터 ／ 3일 전까지 예약</div>
+  </div>
+  <div style="font:400 17px var(--serif); color:var(--gold-l); letter-spacing:3px; margin-bottom:12px;">코스 순서 (총 11품)</div>
+  <div class="flow">
+    <div class="fi"><span class="fi-n">一、전채</span></div>
+    <div class="fi"><span class="fi-n">二、털게 차완무시 (계란찜)</span></div>
+    <div class="fi"><span class="fi-n">三、제철 사시미 3종</span></div>
+    <div class="fi"><span class="fi-n">四、활 게 사시미 (2개)</span></div>
+    <div class="fi"><span class="fi-n">五、게 미소 샤브샤브 (2개)</span></div>
+    <div class="fi"><span class="fi-n">六、게 미소 비빔 (토모아에)</span></div>
+    <div class="fi"><span class="fi-n">七、갑각주 (껍데기 사케)</span></div>
+    <div class="fi"><span class="fi-n">八、게살 간장 절임</span></div>
+    <div class="fi"><span class="fi-n">九、텐푸라</span></div>
+    <div class="fi"><span class="fi-n">十、게 죽</span></div>
+    <div class="fi"><span class="fi-n">十一、디저트</span></div>
+  </div>
+  <div class="tiktok-cta">
+    <a class="tiktok-btn" href="https://youtube.com/shorts/Y-RmxSu0lwY?si=EcCz1infP9nXb2C9" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M10 8.64L15.27 12 10 15.36V8.64M8 5v14l11-7L8 5z"/></svg>
+      털게에 대해 알아보기
+    </a>
+  </div>
+</section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">전채</div><div class="dish-en">Appetizer — "Sakizuke"</div>
+  <div class="photo crop-40"><img src="先付け.jpg" alt="전채"></div>
+  <div class="dish-desc">코스의 시작을 알리는 첫 요리. 계절에 따라 내용이 달라집니다.<br>(예시: 니츠부 — 홋카이도산 골뱅이를 천천히 조린 것)</div>
+  <div class="eat"><div class="eat-title">🐚 니츠부 먹는 법</div><ol>
+    <li>골뱅이에 <strong>이쑤시개가 꽂혀 있습니다</strong></li>
+    <li><strong>이쑤시개를 돌리면서</strong> 살을 나선형으로 빼내세요</li>
+    <li>조림국물에도 감칠맛이 가득 — 함께 즐기세요</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">털게 차완무시</div><div class="dish-en">Crab Egg Custard — 계란찜</div>
+  <div class="photo crop-center"><img src="茶碗蒸し.jpg" alt="게 차완무시"></div>
+  <div class="dish-desc">털게 껍데기로 우려낸 육수로 만든 계란찜. 달걀은 홋카이도 쿠리야마초의 「옥수수 달걀」. 안에 채소와 게살이 들어있습니다. 위에 은앙(뜨거운 소스)이 올려져 있습니다.</div>
+  <div class="eat"><div class="eat-title">🥄 먹는 법</div><ol>
+    <li><strong class="warn">위의 소스가 매우 뜨거우니 조심하세요!</strong></li>
+    <li>숟가락으로 드세요</li>
+    <li>안에 숨겨진 채소와 게살도 함께 즐기세요</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">제철 사시미 3종</div><div class="dish-en">Seasonal Sashimi Trio</div>
+  <div class="photo crop-45"><img src="旬魚 お刺身3点盛り.jpg" alt="제철 사시미"></div>
+  <div class="dish-desc">홋카이도 바다에서 온 당일 가장 신선한 생선 3종 모듬.<br>내용은 매일 달라집니다. (예시: 참다랑어, 광어, 전갱이 등)</div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">활 게 사시미（2개）</div><div class="dish-en">Live Crab Sashimi — 1인 2개</div>
+  <div class="photo crop-center"><img src="カニ刺身.jpg" alt="활 게 사시미"></div>
+  <div class="dish-desc">방금 손질한 활 털게 사시미, 1인당 2개.<br>게 식초는 자체 제조한 이리자케(술 기반 소스)와 폰즈를 블렌딩한 것입니다.</div>
+  <div class="eat"><div class="eat-title">🦀 먹는 법 — 각각 다르게!</div><ol>
+    <li><strong>1번째:</strong> 게 식초에 그대로 찍어 드세요</li>
+    <li><strong>2번째:</strong> 게 식초에 <strong>스다치를 짜 넣고</strong> 찍어 드세요</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">게 미소 샤브샤브（2개）</div><div class="dish-en">Crab Miso Shabu-Shabu</div>
+  <div class="photo crop-center"><img src="カニ味噌しゃぶしゃぶ.jpg" alt="게 미소 샤브샤브"></div>
+  <div class="dish-desc">소형 화로 위에 이미 데워진 게 미소(내장)와 게 다리 2개가 도착합니다. 게 다리를 미소 안에서 익혀 먹습니다.</div>
+  <div class="eat"><div class="eat-title">🦀 먹는 법 — 중요!</div><ol>
+    <li>게 미소는 이미 데워진 상태입니다</li>
+    <li><strong>게 다리 2개</strong>를 미소 안에 넣으세요</li>
+    <li><strong>약 20~30초</strong> 미소를 충분히 묻혀서 드세요</li>
+    <li><strong>미소를 다 쓰지 마세요!</strong> 다음 「토모아에」와 「갑각주」에도 씁니다</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">게 미소 토모아에</div><div class="dish-en">Picked Crab Meat × Remaining Miso</div>
+  <div class="photo crop-center"><img src="S__96698388_0.jpg" alt="게 미소 토모아에"></div>
+  <div class="dish-desc">정성스럽게 발라낸 게살이 도착합니다. 남은 게 미소를 모두 부어 비벼 먹습니다.</div>
+  <div class="eat"><div class="eat-title">🦀 먹는 법</div><ol>
+    <li>손으로 발라낸 게살 접시가 나옵니다</li>
+    <li><strong>남은 게 미소를 전부</strong> 게살 위에 부으세요</li>
+    <li>잘 섞어서 드세요 — 이것이 「토모아에」(함께 비비기)입니다</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">갑각주</div><div class="dish-en">Hot Sake in Crab Shell — "Koura-zake"</div>
+  <div class="photo crop-center"><img src="甲羅酒.jpg" alt="갑각주"></div>
+  <div class="dish-desc">게 미소를 다 먹은 후, 빈 껍데기에 뜨거운 사케를 부어 만드는 특별한 한 잔. 껍데기에 남은 게 미소가 녹아들어 세상에 하나뿐인 술이 됩니다.</div>
+  <div class="eat"><div class="eat-title">🍶 즐기는 법</div><ol>
+    <li><strong>게 미소를 먼저 깨끗이 드세요</strong></li>
+    <li>직원이 빈 껍데기에 뜨거운 사케를 부어줍니다</li>
+    <li><strong>껍데기에 남은 미소를 녹이면서</strong> 마시세요</li>
+    <li>통만이 아는 최고의 즐거움입니다</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">게살 간장 절임</div><div class="dish-en">Soy-Marinated Crab — "Shoyu-zuke"</div>
+  <div class="photo crop-55"><img src="カニ醤油漬け.jpg" alt="게살 간장 절임"></div>
+  <div class="dish-desc">게살을 자체 제조 간장 양념장에 절인 것. 날것 사시미와는 완전히 다른 깊은 맛.</div>
+  <div class="eat"><div class="eat-title">🦀 먹는 법</div><ol>
+    <li><strong>스다치를</strong> 게살 위에 짜주세요</li>
+    <li><strong>와사비</strong>를 올려서 드세요</li>
+    <li>이미 간이 되어 있으므로 간장은 불필요합니다</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">텐푸라</div><div class="dish-en">Crab & Mountain Vegetable Tempura</div>
+  <div class="photo crop-center"><img src="天ぷら.jpg" alt="털게 텐푸라"></div>
+  <div class="dish-desc">털게 텐푸라와 제철 산나물 텐푸라 모듬.</div>
+  <div class="eat"><div class="eat-title">🦀 먹는 법</div><ol>
+    <li><strong class="warn">게 집게 끝부분은 딱딱해서 먹을 수 없습니다!</strong></li>
+    <li><strong>흰 살 부분만</strong> 드세요</li>
+    <li>소금 또는 텐츠유(튀김용 소스) 취향대로</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-ja">게 죽</div><div class="dish-en">Crab Rice Porridge — 마무리</div>
+  <div class="photo crop-60 crop-warm"><img src="かにぞうすい.jpg" alt="게 죽"></div>
+  <div class="dish-desc">털게 껍데기로 우려낸 육수에 건조 관자·벚꽃 새우를 더한 호화 죽. 달걀은 차완무시에서도 사용한 옥수수 달걀.</div>
+  <div class="eat"><div class="eat-title">🥄 먹는 법</div><ol>
+    <li>숟가락으로 드세요</li>
+    <li>게 한 마리의 정수가 쌀알 하나하나에 담겨 있습니다</li>
+    <li>마지막 한 방울까지 남기지 마세요!</li>
+  </ol></div>
+</div></section>
+
+<section class="sec"><div class="dish">
+  <div class="dish-num">— DESSERT —</div>
+  <div class="dish-ja">水菓子</div>
+  <div class="dish-en">계절 디저트 — "미즈가시"</div>
+  <div class="photo crop-45"><img src="水菓子.jpg" alt="계절 디저트"></div>
+  <div class="dish-desc">코스의 마지막을 장식하는 계절 디저트.<br>내용은 계절에 따라 달라집니다.</div>
+</div></section>
+
+<section class="sec">
+  <div style="font:400 20px var(--serif); letter-spacing:3px; margin-bottom:12px;">알레르기 정보</div>
+  <div class="allergy"><div class="al-g"><div class="al-t"><span>🦀</span>갑각류</div><div class="al-t"><span>🐟</span>생선</div><div class="al-t"><span>🥚</span>달걀</div><div class="al-t"><span>🫘</span>대두</div><div class="al-t"><span>🌾</span>밀</div><div class="al-t"><span>🦐</span>새우</div></div>
+  <div class="al-p"><div class="ja">「アレルギーがあります」</div><div class="en">"알레르기가 있습니다"</div></div></div>
+</section>
+
+</div>
+<div class="ft">酒日和 縁屋 — 삿포로시 주오구 미나미6조 니시3 — TEL 011-511-7667</div>
+</div>
+
+<script>
+function sw(l){
+  document.querySelectorAll('.lc').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(e=>e.classList.remove('on'));
+  document.getElementById(l).classList.add('on');
+  document.querySelector('.tab[onclick*="'+l+'"]').classList.add('on');
+  scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

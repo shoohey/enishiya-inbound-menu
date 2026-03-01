@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>酒日和 縁屋 — お会計・ご利用案内 / Dining & Payment Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+
+  :root {
+    --color-bg: #1a1410;
+    --color-bg-card: #241e18;
+    --color-bg-accent: #2d251c;
+    --color-gold: #c8a45e;
+    --color-gold-light: #dfc07a;
+    --color-gold-dim: #8a7342;
+    --color-text: #e8e0d4;
+    --color-text-sub: #a89b8a;
+    --color-text-dim: #7a6f62;
+    --color-red: #c45c4a;
+    --color-red-dim: #8b3d30;
+    --color-green: #5a8a5e;
+    --color-border: #3a3229;
+    --color-border-gold: rgba(200, 164, 94, 0.3);
+    --font-serif: 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+    --font-sans: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --font-en: 'Cormorant Garamond', serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== LANGUAGE TABS ===== */
+  .lang-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26, 20, 16, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .lang-tab {
+    padding: 14px 28px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--color-text-dim);
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    background: none;
+    border-top: none; border-left: none; border-right: none;
+  }
+  .lang-tab:hover { color: var(--color-gold-light); }
+  .lang-tab.active {
+    color: var(--color-gold);
+    border-bottom-color: var(--color-gold);
+  }
+
+  .lang-content { display: none; }
+  .lang-content.active { display: block; }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 60px 20px 50px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--color-gold);
+  }
+  .header h1 {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-family: var(--font-en);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--color-gold-dim);
+    margin-bottom: 16px;
+  }
+  .header .page-title {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-gold-light);
+    letter-spacing: 4px;
+  }
+
+  /* ===== MAIN ===== */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section {
+    padding: 50px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .section:last-child { border-bottom: none; }
+
+  .section-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-label {
+    font-family: var(--font-en);
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--color-gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: var(--color-text);
+    margin-bottom: 6px;
+  }
+  .section-title-en {
+    font-family: var(--font-en);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--color-text-dim);
+    margin-bottom: 28px;
+  }
+
+  /* ===== INFO CARDS ===== */
+  .info-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .info-card-title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--color-gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-card p, .info-card li {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 2;
+    font-weight: 300;
+  }
+  .info-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .info-card ul li {
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .info-card ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold-dim);
+  }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight-box {
+    background: rgba(200, 164, 94, 0.06);
+    border: 1px solid var(--color-border-gold);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .highlight-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 3px; height: 100%;
+    background: var(--color-gold);
+  }
+  .highlight-box .title {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--color-gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .highlight-box p {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  /* ===== STEPS ===== */
+  .steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(58, 50, 41, 0.4);
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 1.8;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .steps li::before {
+    content: counter(step);
+    font-family: var(--font-en);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-gold);
+    min-width: 28px;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ===== PHRASE TABLE ===== */
+  .phrase-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  .phrase-table th {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-gold-dim);
+    letter-spacing: 2px;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-gold-dim);
+  }
+  .phrase-table td {
+    padding: 12px;
+    font-size: 13px;
+    color: var(--color-text-sub);
+    border-bottom: 1px solid rgba(58, 50, 41, 0.4);
+    vertical-align: top;
+  }
+  .phrase-table .ja-text {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--color-text);
+    letter-spacing: 1px;
+  }
+  .phrase-table .pronunciation {
+    font-family: var(--font-en);
+    font-style: italic;
+    color: var(--color-text-dim);
+    font-size: 13px;
+  }
+
+  /* ===== PAYMENT TABLE ===== */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media (max-width: 500px) {
+    .payment-grid { grid-template-columns: 1fr; }
+  }
+  .payment-method {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .payment-method .pm-icon {
+    font-size: 24px;
+    min-width: 36px;
+    text-align: center;
+  }
+  .payment-method .pm-label {
+    font-size: 14px;
+    color: var(--color-text);
+    font-weight: 400;
+  }
+  .payment-method .pm-status {
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .pm-yes { color: var(--color-green); }
+  .pm-ask { color: var(--color-gold-dim); }
+  .pm-no { color: var(--color-red-dim); }
+
+  /* ===== ETIQUETTE GRID ===== */
+  .etiquette-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 500px) {
+    .etiquette-grid { grid-template-columns: 1fr; }
+  }
+  .etiquette-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 20px;
+    text-align: center;
+  }
+  .etiquette-card .ec-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .etiquette-card .ec-do {
+    font-size: 12px;
+    color: var(--color-green);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .etiquette-card .ec-dont {
+    font-size: 12px;
+    color: var(--color-red);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .etiquette-card .ec-text {
+    font-size: 12px;
+    color: var(--color-text-sub);
+    line-height: 1.7;
+  }
+
+  /* ===== TAXI CARD ===== */
+  .taxi-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+  }
+  .taxi-card::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 1px solid var(--color-border-gold);
+    pointer-events: none;
+  }
+  .taxi-card .taxi-label {
+    font-size: 11px;
+    color: var(--color-gold-dim);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .taxi-card .taxi-address {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-text);
+    line-height: 1.8;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .taxi-card .taxi-instruction {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    color: var(--color-gold-light);
+    letter-spacing: 2px;
+  }
+
+  /* ===== BILL BREAKDOWN ===== */
+  .bill-table {
+    width: 100%;
+    margin: 20px 0;
+  }
+  .bill-table td {
+    padding: 12px 8px;
+    border-bottom: 1px dotted var(--color-border);
+    font-size: 14px;
+  }
+  .bill-table td:first-child {
+    color: var(--color-text);
+    font-weight: 400;
+  }
+  .bill-table td:last-child {
+    color: var(--color-text-sub);
+    text-align: right;
+    font-size: 13px;
+  }
+
+  /* ===== TIP BOX ===== */
+  .tip-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--color-bg-accent);
+    border-left: 2px solid var(--color-gold-dim);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 1.8;
+  }
+  .tip-box .tip-icon {
+    font-size: 16px;
+    min-width: 20px;
+  }
+
+  /* ===== ACCESS ===== */
+  .access-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  .access-label {
+    color: var(--color-gold-dim);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .access-value {
+    color: var(--color-text-sub);
+  }
+
+  /* ===== GOODBYE ===== */
+  .goodbye {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  .goodbye .phrase-ja {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    color: var(--color-text);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .goodbye .phrase-reading {
+    font-family: var(--font-en);
+    font-size: 14px;
+    color: var(--color-gold-dim);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  .goodbye .phrase-meaning {
+    font-size: 13px;
+    color: var(--color-text-sub);
+    line-height: 1.8;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 11px;
+    color: var(--color-text-dim);
+    letter-spacing: 1px;
+    line-height: 2;
+  }
+
+  /* ===== SIZE UP (全体フォント拡大) ===== */
+  .lang-tab { font-size: 15px; }
+  .header h1 { font-size: 34px; }
+  .header .subtitle { font-size: 16px; }
+  .header .page-title { font-size: 19px; }
+  .section-icon { font-size: 32px; }
+  .section-label { font-size: 13px; }
+  .section-title { font-size: 24px; }
+  .section-title-en { font-size: 15px; }
+  .info-card-title { font-size: 17px; }
+  .info-card p, .info-card li { font-size: 15px; }
+  .highlight-box .title { font-size: 17px; }
+  .highlight-box p { font-size: 15px; }
+  .steps li { font-size: 15px; }
+  .steps li::before { font-size: 22px; }
+  .phrase-table th { font-size: 13px; }
+  .phrase-table td { font-size: 15px; }
+  .phrase-table .ja-text { font-size: 19px; }
+  .phrase-table .pronunciation { font-size: 15px; }
+  .payment-method .pm-icon { font-size: 28px; }
+  .payment-method .pm-label { font-size: 16px; }
+  .payment-method .pm-status { font-size: 14px; }
+  .etiquette-card .ec-icon { font-size: 36px; }
+  .etiquette-card .ec-do { font-size: 14px; }
+  .etiquette-card .ec-dont { font-size: 14px; }
+  .etiquette-card .ec-text { font-size: 14px; }
+  .taxi-card .taxi-label { font-size: 13px; }
+  .taxi-card .taxi-address { font-size: 24px; }
+  .taxi-card .taxi-instruction { font-size: 21px; }
+  .bill-table td { font-size: 16px; }
+  .bill-table td:last-child { font-size: 15px; }
+  .tip-box { font-size: 15px; }
+  .tip-box .tip-icon { font-size: 18px; }
+  .access-info { font-size: 15px; }
+  .goodbye .phrase-ja { font-size: 28px; }
+  .goodbye .phrase-reading { font-size: 16px; }
+  .goodbye .phrase-meaning { font-size: 15px; }
+  .footer { font-size: 13px; }
+
+  @media print {
+    .lang-tabs { display: none; }
+    body { background: #fff; color: #1a1410; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="lang-tabs">
+  <button class="lang-tab active" onclick="switchLang('ja')">日本語</button>
+  <button class="lang-tab" onclick="switchLang('en')">ENGLISH</button>
+  <button class="lang-tab" onclick="switchLang('zh')">中文</button>
+  <button class="lang-tab" onclick="switchLang('ko')">한국어</button>
+</nav>
+
+<!-- =============================== -->
+<!-- ===== JAPANESE ================ -->
+<!-- =============================== -->
+<div id="lang-ja" class="lang-content active">
+
+<header class="header">
+  <h1>酒日和 縁屋</h1>
+  <div class="subtitle">E N I S H I Y A</div>
+  <div class="page-title">お会計・ご利用案内</div>
+</header>
+
+<div class="container">
+
+  <!-- BEFORE MEAL -->
+  <section class="section">
+    <span class="section-icon">🏮</span>
+    <div class="section-label">Before Your Meal</div>
+    <div class="section-title">ご来店前のご案内</div>
+    <div class="section-title-en">Information for Our Guests</div>
+
+    <div class="info-card">
+      <div class="info-card-title">📋 ご予約について</div>
+      <ul>
+        <li>コース料理は事前予約制となっております</li>
+        <li>一品料理のみのご利用は、ご予約なしでもご来店いただけます</li>
+        <li>4名様以上のグループはご予約をおすすめいたします</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="title">お通しについて — About "Otōshi"</div>
+      <p>
+        ご着席後、最初に小さな一品料理をお出しいたします。これは居酒屋の一般的な慣習で、席料を兼ねたものです（お一人様 ¥500〜¥800 程度）。大将が心を込めてご用意する、ささやかなおもてなしです。
+      </p>
+      <p style="margin-top: 8px; font-size: 14px; color: var(--color-text-dim);">
+        When seated, a small appetizer called "Otōshi" will be served. This is a standard Japanese izakaya custom that serves as a table charge (approx. ¥500–¥800 per person). It is not optional.
+      </p>
+    </div>
+  </section>
+
+  <!-- DURING MEAL -->
+  <section class="section">
+    <span class="section-icon">🍽️</span>
+    <div class="section-label">During Your Meal</div>
+    <div class="section-title">お食事中のご案内</div>
+    <div class="section-title-en">How to Order & Dining Tips</div>
+
+    <div class="info-card">
+      <div class="info-card-title">ご注文の流れ</div>
+      <ol class="steps">
+        <li>おしぼりをお持ちいたします — お手をお拭きください<br><span style="color:var(--color-text-dim); font-size:12px;">A hot towel (Oshibori) will be provided — clean your hands</span></li>
+        <li>最初にお飲み物をご注文ください<br><span style="color:var(--color-text-dim); font-size:12px;">Start with drinks first</span></li>
+        <li>お料理は少しずつご注文 — 居酒屋スタイルです<br><span style="color:var(--color-text-dim); font-size:12px;">Order gradually — izakaya dining is meant to be leisurely</span></li>
+        <li>お料理は皆さまでシェアしてお楽しみください<br><span style="color:var(--color-text-dim); font-size:12px;">Dishes are meant to be shared</span></li>
+        <li>お食事中、いつでも追加ご注文いただけます<br><span style="color:var(--color-text-dim); font-size:12px;">Feel free to order more throughout the evening</span></li>
+      </ol>
+    </div>
+
+    <div class="info-card" style="margin-top: 24px;">
+      <div class="info-card-title">🗣 便利な日本語フレーズ</div>
+      <table class="phrase-table">
+        <thead>
+          <tr><th>SITUATION</th><th>日本語</th><th>PRONUNCIATION</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>スタッフを呼ぶ</td>
+            <td class="ja-text">すみません</td>
+            <td class="pronunciation">Sumimasen</td>
+          </tr>
+          <tr>
+            <td>注文する</td>
+            <td class="ja-text">注文お願いします</td>
+            <td class="pronunciation">Chuumon onegaishimasu</td>
+          </tr>
+          <tr>
+            <td>おすすめを聞く</td>
+            <td class="ja-text">おすすめは？</td>
+            <td class="pronunciation">Osusume wa?</td>
+          </tr>
+          <tr>
+            <td>おまかせ</td>
+            <td class="ja-text">おまかせで</td>
+            <td class="pronunciation">Omakase de</td>
+          </tr>
+          <tr>
+            <td>おいしい！</td>
+            <td class="ja-text">おいしい！</td>
+            <td class="pronunciation">Oishii!</td>
+          </tr>
+          <tr>
+            <td>お会計</td>
+            <td class="ja-text">お会計お願いします</td>
+            <td class="pronunciation">Okaikei onegaishimasu</td>
+          </tr>
+          <tr>
+            <td>アレルギー</td>
+            <td class="ja-text">アレルギーがあります</td>
+            <td class="pronunciation">Arerugii ga arimasu</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ETIQUETTE -->
+    <div style="margin-top: 24px;">
+      <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin-bottom: 16px;">食事のマナー / Dining Etiquette</div>
+      <div class="etiquette-grid">
+        <div class="etiquette-card">
+          <div class="ec-icon">🥢</div>
+          <div class="ec-dont">NG</div>
+          <div class="ec-text">箸をご飯に立てない<br>Don't stick chopsticks upright in rice</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">🍶</div>
+          <div class="ec-do">GOOD</div>
+          <div class="ec-text">お互いに注ぎ合う<br>Pour sake for each other</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">🍜</div>
+          <div class="ec-do">OK!</div>
+          <div class="ec-text">麺や汁物の音はOK<br>Slurping is perfectly fine!</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">👟</div>
+          <div class="ec-do">OK</div>
+          <div class="ec-text">靴のままでOK<br>Keep your shoes on</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT -->
+  <section class="section">
+    <span class="section-icon">💴</span>
+    <div class="section-label">Payment</div>
+    <div class="section-title">お会計について</div>
+    <div class="section-title-en">How to Pay</div>
+
+    <div class="info-card">
+      <div class="info-card-title">お会計の流れ</div>
+      <ol class="steps">
+        <li>「お会計お願いします」とお声がけください<br><span style="color:var(--color-text-dim); font-size:12px;">Say: "Okaikei onegaishimasu"</span></li>
+        <li>お席またはレジにてお会計<br><span style="color:var(--color-text-dim); font-size:12px;">Pay at table or register near entrance</span></li>
+      </ol>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 24px 0 16px;">伝票の内訳 / Bill Breakdown</div>
+    <table class="bill-table">
+      <tr><td>お料理・お飲み物</td><td>ご注文メニュー / Food & Drinks</td></tr>
+      <tr><td>お通し</td><td>席料（お一人様ごと）/ Table charge</td></tr>
+      <tr><td>消費税</td><td>表示価格に含む / Included in prices</td></tr>
+      <tr><td>サービス料</td><td>個室ご利用時 / Private room only</td></tr>
+    </table>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px;">お支払い方法 / Payment Methods</div>
+    <div class="payment-grid">
+      <div class="payment-method">
+        <div class="pm-icon">💴</div>
+        <div>
+          <div class="pm-label">現金 / Cash</div>
+          <div class="pm-status pm-yes">OK</div>
+        </div>
+      </div>
+      <div class="payment-method">
+        <div class="pm-icon">💳</div>
+        <div>
+          <div class="pm-label">カード / Credit Card</div>
+          <div class="pm-status pm-yes">Visa, Mastercard</div>
+        </div>
+      </div>
+      <div class="payment-method">
+        <div class="pm-icon">📱</div>
+        <div>
+          <div class="pm-label">QR決済 / QR Pay</div>
+          <div class="pm-status pm-ask">要確認 / Please ask</div>
+        </div>
+      </div>
+      <div class="payment-method">
+        <div class="pm-icon">💵</div>
+        <div>
+          <div class="pm-label">外貨 / Foreign Currency</div>
+          <div class="pm-status pm-no">不可 / Not accepted</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>チップは不要です / No tipping</strong><br>
+        日本ではチップの習慣がありません。最高のおもてなしは標準のサービスに含まれています。<br>
+        <span style="color:var(--color-text-dim);">Tipping is not customary in Japan. Excellent service is the standard.</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>一括会計 / One Bill</strong><br>
+        テーブル単位での一括会計が基本です。個別会計は承っておりません。<br>
+        <span style="color:var(--color-text-dim);">One bill per table. Splitting is generally not available.</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <div>
+        <strong>領収書 / Receipt</strong><br>
+        宛名入り領収書が必要な場合は「領収書お願いします」とお申し付けください。<br>
+        <span style="color:var(--color-text-dim);">Say "Ryōshūsho onegaishimasu" for a formal receipt.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section class="section">
+    <span class="section-icon">📍</span>
+    <div class="section-label">Access</div>
+    <div class="section-title">アクセス</div>
+    <div class="section-title-en">Getting Here</div>
+
+    <div class="access-info">
+      <span class="access-label">住所</span>
+      <span class="access-value">札幌市中央区南6条西3丁目 アクミツビル 2F</span>
+      <span class="access-label">最寄り駅</span>
+      <span class="access-value">🚇 豊水すすきの駅 7番出口（徒歩1分）</span>
+      <span class="access-label"></span>
+      <span class="access-value">🚇 すすきの駅（徒歩5分）</span>
+      <span class="access-label">営業時間</span>
+      <span class="access-value">月〜土 18:00–24:00（L.O. 23:30）</span>
+      <span class="access-label">定休日</span>
+      <span class="access-value">日曜・祝日</span>
+      <span class="access-label">電話</span>
+      <span class="access-value">011-511-7667</span>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 16px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px; text-align: center;">🚕 タクシーでお越しの方 — Show this to your driver</div>
+    <div class="taxi-card">
+      <div class="taxi-label">DESTINATION / 行き先</div>
+      <div class="taxi-address">
+        札幌市中央区<br>南6条西3丁目<br>アクミツビル 2F
+      </div>
+      <div class="taxi-instruction">「縁屋」までお願いします</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- GOODBYE -->
+<div class="goodbye">
+  <div class="phrase-ja">ごちそうさまでした</div>
+  <div class="phrase-reading">"Gochisousama deshita"</div>
+  <div class="phrase-meaning">
+    — ありがとうございました、またのお越しをお待ちしております —<br>
+    <span style="color: var(--color-text-dim);">Thank you for the wonderful meal — Please say this as you leave!</span>
+  </div>
+</div>
+
+<div class="footer">
+  酒日和 縁屋<br>
+  札幌市中央区南6条西3丁目 アクミツビル2F<br>
+  TEL 011-511-7667
+</div>
+
+</div><!-- /lang-ja -->
+
+
+<!-- =============================== -->
+<!-- ===== ENGLISH ================= -->
+<!-- =============================== -->
+<div id="lang-en" class="lang-content">
+
+<header class="header">
+  <h1>酒日和 縁屋</h1>
+  <div class="subtitle">E N I S H I Y A</div>
+  <div class="page-title">Dining & Payment Guide</div>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <span class="section-icon">🏮</span>
+    <div class="section-label">Before Your Meal</div>
+    <div class="section-title">ご来店前に</div>
+    <div class="section-title-en">Before You Dine</div>
+
+    <div class="info-card">
+      <div class="info-card-title">📋 Reservations</div>
+      <ul>
+        <li>Course meals require advance reservation</li>
+        <li>Walk-in guests welcome for à la carte (subject to availability)</li>
+        <li>Groups of 4+ — reservation recommended</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="title">About "Otōshi" — お通し</div>
+      <p>
+        When seated, you'll receive a small appetizer. This is a standard izakaya custom that serves as a table charge (¥500–¥800 per person). It is <strong>not optional</strong> — think of it as a cover charge with a complimentary dish.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">🍽️</span>
+    <div class="section-label">During Your Meal</div>
+    <div class="section-title">お食事中</div>
+    <div class="section-title-en">How to Order</div>
+
+    <div class="info-card">
+      <div class="info-card-title">Ordering Flow</div>
+      <ol class="steps">
+        <li>A hot towel (Oshibori) will be brought — clean your hands</li>
+        <li>Start with drinks — try saying "Toriaezu, biiru!" (Beer first!)</li>
+        <li>Order dishes gradually — izakaya dining is leisurely</li>
+        <li>Dishes are meant to be shared among the table</li>
+        <li>Order more anytime throughout the evening</li>
+      </ol>
+    </div>
+
+    <div class="info-card" style="margin-top: 24px;">
+      <div class="info-card-title">🗣 Useful Japanese Phrases</div>
+      <table class="phrase-table">
+        <thead>
+          <tr><th>SITUATION</th><th>JAPANESE</th><th>PRONUNCIATION</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Call staff</td><td class="ja-text">すみません</td><td class="pronunciation">Sumimasen</td></tr>
+          <tr><td>Order</td><td class="ja-text">注文お願いします</td><td class="pronunciation">Chuumon onegaishimasu</td></tr>
+          <tr><td>Recommend?</td><td class="ja-text">おすすめは？</td><td class="pronunciation">Osusume wa?</td></tr>
+          <tr><td>Chef's choice</td><td class="ja-text">おまかせで</td><td class="pronunciation">Omakase de</td></tr>
+          <tr><td>Delicious!</td><td class="ja-text">おいしい！</td><td class="pronunciation">Oishii!</td></tr>
+          <tr><td>Check please</td><td class="ja-text">お会計お願いします</td><td class="pronunciation">Okaikei onegaishimasu</td></tr>
+          <tr><td>Allergy</td><td class="ja-text">アレルギーがあります</td><td class="pronunciation">Arerugii ga arimasu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin-bottom: 16px;">Dining Etiquette</div>
+      <div class="etiquette-grid">
+        <div class="etiquette-card">
+          <div class="ec-icon">🥢</div>
+          <div class="ec-dont">DON'T</div>
+          <div class="ec-text">Stick chopsticks upright in rice<br>(resembles funeral ritual)</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">🍶</div>
+          <div class="ec-do">DO</div>
+          <div class="ec-text">Pour sake for others<br>Let others pour for you</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">🍜</div>
+          <div class="ec-do">OK!</div>
+          <div class="ec-text">Slurping noodles & soup<br>is perfectly acceptable!</div>
+        </div>
+        <div class="etiquette-card">
+          <div class="ec-icon">👟</div>
+          <div class="ec-do">OK</div>
+          <div class="ec-text">Keep your shoes on<br>No removal needed here</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">💴</span>
+    <div class="section-label">Payment</div>
+    <div class="section-title">お会計</div>
+    <div class="section-title-en">How to Pay</div>
+
+    <div class="info-card">
+      <ol class="steps">
+        <li>Say: "Okaikei onegaishimasu" (Check, please)</li>
+        <li>Pay at table or at the register near the entrance</li>
+      </ol>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 24px 0 16px;">Your Bill Includes</div>
+    <table class="bill-table">
+      <tr><td>Food & Drinks</td><td>Everything you ordered</td></tr>
+      <tr><td>Otōshi</td><td>Table charge (per person)</td></tr>
+      <tr><td>Tax</td><td>Already included in prices</td></tr>
+      <tr><td>Service Charge</td><td>Private rooms only</td></tr>
+    </table>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px;">Payment Methods</div>
+    <div class="payment-grid">
+      <div class="payment-method"><div class="pm-icon">💴</div><div><div class="pm-label">Cash (JPY)</div><div class="pm-status pm-yes">Accepted</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💳</div><div><div class="pm-label">Credit Card</div><div class="pm-status pm-yes">Visa, Mastercard</div></div></div>
+      <div class="payment-method"><div class="pm-icon">📱</div><div><div class="pm-label">QR Payment</div><div class="pm-status pm-ask">Please ask</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💵</div><div><div class="pm-label">Foreign Currency</div><div class="pm-status pm-no">Not accepted</div></div></div>
+    </div>
+
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>No Tipping</strong> — Tipping is not customary in Japan and may cause confusion.</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>One Bill Per Table</strong> — Splitting bills is generally not available.</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>Receipt</strong> — Say "Ryōshūsho onegaishimasu" for a formal business receipt.</div></div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">📍</span>
+    <div class="section-label">Access</div>
+    <div class="section-title">アクセス</div>
+    <div class="section-title-en">Getting Here</div>
+
+    <div class="access-info">
+      <span class="access-label">Address</span>
+      <span class="access-value">Akumizu Bldg 2F, Minami 6-jo Nishi 3, Chuo-ku, Sapporo</span>
+      <span class="access-label">Station</span>
+      <span class="access-value">🚇 Hosui-Susukino Sta. — Exit 7 (1 min walk)</span>
+      <span class="access-label"></span>
+      <span class="access-value">🚇 Susukino Sta. (5 min walk)</span>
+      <span class="access-label">Hours</span>
+      <span class="access-value">Mon–Sat 6:00 PM – 12:00 AM (L.O. 11:30 PM)</span>
+      <span class="access-label">Closed</span>
+      <span class="access-value">Sundays & Holidays</span>
+      <span class="access-label">Phone</span>
+      <span class="access-value">011-511-7667</span>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 16px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px; text-align: center;">🚕 Show This to Your Taxi Driver</div>
+    <div class="taxi-card">
+      <div class="taxi-label">DESTINATION</div>
+      <div class="taxi-address">札幌市中央区<br>南6条西3丁目<br>アクミツビル 2F</div>
+      <div class="taxi-instruction">「縁屋」までお願いします</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="goodbye">
+  <div class="phrase-ja">ごちそうさまでした</div>
+  <div class="phrase-reading">"Gochisousama deshita"</div>
+  <div class="phrase-meaning">Thank you for the wonderful meal!<br><span style="color: var(--color-text-dim);">Say this to the chef as you leave — it's the best compliment.</span></div>
+</div>
+
+<div class="footer">酒日和 縁屋 — Minami 6-jo Nishi 3, Chuo-ku, Sapporo — TEL 011-511-7667</div>
+
+</div><!-- /lang-en -->
+
+
+<!-- =============================== -->
+<!-- ===== CHINESE ================= -->
+<!-- =============================== -->
+<div id="lang-zh" class="lang-content">
+
+<header class="header">
+  <h1>酒日和 縁屋</h1>
+  <div class="subtitle">E N I S H I Y A</div>
+  <div class="page-title">结账与用餐指南</div>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <span class="section-icon">🏮</span>
+    <div class="section-title">用餐前须知</div>
+    <div class="section-title-en">Before Your Meal</div>
+
+    <div class="info-card">
+      <div class="info-card-title">📋 预约</div>
+      <ul>
+        <li>套餐料理需提前预约</li>
+        <li>单点用餐欢迎直接到店</li>
+        <li>4人以上建议提前预约</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="title">关于「お通し」(Otōshi) — 席位费</div>
+      <p>入座后服务员会送上一道小菜。这是日本居酒屋的标准惯例，相当于席位费（每人约 ¥500–¥800）。不可拒绝 — 这是日本的正常消费习惯。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">🍽️</span>
+    <div class="section-title">用餐中</div>
+    <div class="section-title-en">How to Order</div>
+
+    <div class="info-card">
+      <ol class="steps">
+        <li>服务员会送上热毛巾 — 用来擦手</li>
+        <li>先点饮料 — 日本习惯先点酒水</li>
+        <li>逐步点菜 — 居酒屋的用餐节奏是慢慢享受</li>
+        <li>菜品大家共享</li>
+        <li>用餐过程中可以随时加点</li>
+      </ol>
+    </div>
+
+    <div class="info-card" style="margin-top: 24px;">
+      <div class="info-card-title">🗣 实用日语短句</div>
+      <table class="phrase-table">
+        <thead><tr><th>场景</th><th>日语</th><th>发音</th></tr></thead>
+        <tbody>
+          <tr><td>呼叫服务员</td><td class="ja-text">すみません</td><td class="pronunciation">Sumimasen</td></tr>
+          <tr><td>点菜</td><td class="ja-text">注文お願いします</td><td class="pronunciation">Chuumon onegaishimasu</td></tr>
+          <tr><td>推荐</td><td class="ja-text">おすすめは？</td><td class="pronunciation">Osusume wa?</td></tr>
+          <tr><td>主厨搭配</td><td class="ja-text">おまかせで</td><td class="pronunciation">Omakase de</td></tr>
+          <tr><td>好吃！</td><td class="ja-text">おいしい！</td><td class="pronunciation">Oishii!</td></tr>
+          <tr><td>买单</td><td class="ja-text">お会計お願いします</td><td class="pronunciation">Okaikei onegaishimasu</td></tr>
+          <tr><td>过敏</td><td class="ja-text">アレルギーがあります</td><td class="pronunciation">Arerugii ga arimasu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin-bottom: 16px;">用餐礼仪</div>
+      <div class="etiquette-grid">
+        <div class="etiquette-card"><div class="ec-icon">🥢</div><div class="ec-dont">不要</div><div class="ec-text">将筷子竖插在饭中<br>（联想到葬礼）</div></div>
+        <div class="etiquette-card"><div class="ec-icon">🍶</div><div class="ec-do">建议</div><div class="ec-text">互相倒酒<br>是一种礼节</div></div>
+        <div class="etiquette-card"><div class="ec-icon">🍜</div><div class="ec-do">可以！</div><div class="ec-text">喝汤吃面<br>发出声音完全OK</div></div>
+        <div class="etiquette-card"><div class="ec-icon">👟</div><div class="ec-do">OK</div><div class="ec-text">无需脱鞋</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">💴</span>
+    <div class="section-title">结账</div>
+    <div class="section-title-en">Payment</div>
+
+    <div class="info-card">
+      <ol class="steps">
+        <li>请说："Okaikei onegaishimasu"（买单）</li>
+        <li>在桌边或入口收银台结账</li>
+      </ol>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 24px 0 16px;">账单项目</div>
+    <table class="bill-table">
+      <tr><td>餐饮费</td><td>您点的所有菜品和饮料</td></tr>
+      <tr><td>席位费 (Otōshi)</td><td>按人数计算</td></tr>
+      <tr><td>消费税</td><td>已含在标价中</td></tr>
+      <tr><td>服务费</td><td>包间可能另收</td></tr>
+    </table>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px;">支付方式</div>
+    <div class="payment-grid">
+      <div class="payment-method"><div class="pm-icon">💴</div><div><div class="pm-label">现金（日元）</div><div class="pm-status pm-yes">可以</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💳</div><div><div class="pm-label">信用卡</div><div class="pm-status pm-yes">Visa, Mastercard</div></div></div>
+      <div class="payment-method"><div class="pm-icon">📱</div><div><div class="pm-label">二维码支付</div><div class="pm-status pm-ask">请咨询</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💵</div><div><div class="pm-label">外币</div><div class="pm-status pm-no">不可以</div></div></div>
+    </div>
+
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>无需小费</strong> — 日本没有小费文化，给小费反而可能造成困扰。</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>统一结账</strong> — 一桌一张账单，一般不提供AA分账。</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>发票</strong> — 如需正式发票请说 "Ryōshūsho onegaishimasu"。</div></div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">📍</span>
+    <div class="section-title">交通指南</div>
+    <div class="section-title-en">Getting Here</div>
+
+    <div class="access-info">
+      <span class="access-label">地址</span><span class="access-value">札幌市中央区南6条西3丁目 アクミツビル 2F</span>
+      <span class="access-label">最近车站</span><span class="access-value">🚇 丰水薄野站 7号出口（步行1分钟）</span>
+      <span class="access-label"></span><span class="access-value">🚇 薄野站（步行5分钟）</span>
+      <span class="access-label">营业时间</span><span class="access-value">周一至周六 18:00–24:00 (L.O. 23:30)</span>
+      <span class="access-label">休息日</span><span class="access-value">周日及节假日</span>
+      <span class="access-label">电话</span><span class="access-value">011-511-7667</span>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0 16px;"><span style="font-family: var(--font-serif); font-size: 16px; color: var(--color-gold-light);">🚕 出示给出租车司机</span></div>
+    <div class="taxi-card">
+      <div class="taxi-label">目的地</div>
+      <div class="taxi-address">札幌市中央区<br>南6条西3丁目<br>アクミツビル 2F</div>
+      <div class="taxi-instruction">「縁屋」までお願いします</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="goodbye">
+  <div class="phrase-ja">ごちそうさまでした</div>
+  <div class="phrase-reading">"Gochisousama deshita"</div>
+  <div class="phrase-meaning">感谢款待！<br><span style="color: var(--color-text-dim);">离开时请对主厨说这句话 — 这是最好的赞美。</span></div>
+</div>
+
+<div class="footer">酒日和 縁屋 — 札幌市中央区南6条西3丁目 — TEL 011-511-7667</div>
+
+</div><!-- /lang-zh -->
+
+
+<!-- =============================== -->
+<!-- ===== KOREAN ================== -->
+<!-- =============================== -->
+<div id="lang-ko" class="lang-content">
+
+<header class="header">
+  <h1>酒日和 縁屋</h1>
+  <div class="subtitle">E N I S H I Y A</div>
+  <div class="page-title">결제 및 이용 안내</div>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <span class="section-icon">🏮</span>
+    <div class="section-title">식사 전 안내</div>
+    <div class="section-title-en">Before Your Meal</div>
+
+    <div class="info-card">
+      <div class="info-card-title">📋 예약</div>
+      <ul>
+        <li>코스 요리는 사전 예약 필수</li>
+        <li>단품 주문은 예약 없이 방문 가능</li>
+        <li>4명 이상은 예약을 권장합니다</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="title">오토시 (お通し) — 테이블 차지</div>
+      <p>착석하시면 작은 안주가 제공됩니다. 이것은 일본 이자카야의 표준 관행으로, 테이블 이용료 역할을 합니다 (1인당 약 ¥500~¥800). 거절할 수 없습니다 — 일본에서는 정상적인 문화입니다.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">🍽️</span>
+    <div class="section-title">식사 중</div>
+    <div class="section-title-en">How to Order</div>
+
+    <div class="info-card">
+      <ol class="steps">
+        <li>직원이 물수건 (오시보리)을 가져다 줍니다 — 손을 닦아주세요</li>
+        <li>먼저 음료를 주문하세요</li>
+        <li>요리는 천천히 주문 — 이자카야는 느긋하게 즐기는 곳</li>
+        <li>요리는 함께 나누어 드세요</li>
+        <li>식사 중 언제든 추가 주문 가능</li>
+      </ol>
+    </div>
+
+    <div class="info-card" style="margin-top: 24px;">
+      <div class="info-card-title">🗣 유용한 일본어 표현</div>
+      <table class="phrase-table">
+        <thead><tr><th>상황</th><th>일본어</th><th>발음</th></tr></thead>
+        <tbody>
+          <tr><td>직원 호출</td><td class="ja-text">すみません</td><td class="pronunciation">스미마셍</td></tr>
+          <tr><td>주문</td><td class="ja-text">注文お願いします</td><td class="pronunciation">추몽 오네가이시마스</td></tr>
+          <tr><td>추천</td><td class="ja-text">おすすめは？</td><td class="pronunciation">오스스메와?</td></tr>
+          <tr><td>오마카세</td><td class="ja-text">おまかせで</td><td class="pronunciation">오마카세데</td></tr>
+          <tr><td>맛있다!</td><td class="ja-text">おいしい！</td><td class="pronunciation">오이시이!</td></tr>
+          <tr><td>계산</td><td class="ja-text">お会計お願いします</td><td class="pronunciation">오카이케이 오네가이시마스</td></tr>
+          <tr><td>알레르기</td><td class="ja-text">アレルギーがあります</td><td class="pronunciation">아레루기가 아리마스</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 24px;">
+      <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin-bottom: 16px;">식사 에티켓</div>
+      <div class="etiquette-grid">
+        <div class="etiquette-card"><div class="ec-icon">🥢</div><div class="ec-dont">금지</div><div class="ec-text">밥에 젓가락 꽂기<br>(장례 의식 연상)</div></div>
+        <div class="etiquette-card"><div class="ec-icon">🍶</div><div class="ec-do">예의</div><div class="ec-text">서로 따라주기<br>사케 매너</div></div>
+        <div class="etiquette-card"><div class="ec-icon">🍜</div><div class="ec-do">OK!</div><div class="ec-text">면·국물 소리<br>내도 괜찮아요!</div></div>
+        <div class="etiquette-card"><div class="ec-icon">👟</div><div class="ec-do">OK</div><div class="ec-text">신발 벗을<br>필요 없습니다</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">💴</span>
+    <div class="section-title">결제</div>
+    <div class="section-title-en">Payment</div>
+
+    <div class="info-card">
+      <ol class="steps">
+        <li>"오카이케이 오네가이시마스" 라고 말하세요 (계산서 주세요)</li>
+        <li>테이블 또는 입구 카운터에서 결제</li>
+      </ol>
+    </div>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 24px 0 16px;">계산서 항목</div>
+    <table class="bill-table">
+      <tr><td>음식 & 음료</td><td>주문하신 모든 메뉴</td></tr>
+      <tr><td>오토시</td><td>테이블 차지 (인원수)</td></tr>
+      <tr><td>소비세</td><td>가격에 이미 포함</td></tr>
+      <tr><td>서비스료</td><td>프라이빗 룸만</td></tr>
+    </table>
+
+    <div style="font-family: var(--font-serif); font-size: 17px; color: var(--color-gold-light); letter-spacing: 2px; margin: 30px 0 16px;">결제 수단</div>
+    <div class="payment-grid">
+      <div class="payment-method"><div class="pm-icon">💴</div><div><div class="pm-label">현금 (엔화)</div><div class="pm-status pm-yes">가능</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💳</div><div><div class="pm-label">신용카드</div><div class="pm-status pm-yes">Visa, Mastercard</div></div></div>
+      <div class="payment-method"><div class="pm-icon">📱</div><div><div class="pm-label">QR 결제</div><div class="pm-status pm-ask">문의 필요</div></div></div>
+      <div class="payment-method"><div class="pm-icon">💵</div><div><div class="pm-label">외화</div><div class="pm-status pm-no">불가</div></div></div>
+    </div>
+
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>팁 없음</strong> — 일본에서는 팁 문화가 없습니다. 팁을 주면 오히려 당황할 수 있습니다.</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>일괄 결제</strong> — 테이블 단위 하나의 계산서. 개별 계산은 불가합니다.</div></div>
+    <div class="tip-box"><span class="tip-icon">💡</span><div><strong>영수증</strong> — 정식 영수증이 필요하시면 "료슈쇼 오네가이시마스"라고 말하세요.</div></div>
+  </section>
+
+  <section class="section">
+    <span class="section-icon">📍</span>
+    <div class="section-title">오시는 길</div>
+    <div class="section-title-en">Getting Here</div>
+
+    <div class="access-info">
+      <span class="access-label">주소</span><span class="access-value">삿포로시 주오구 미나미6조 니시3 아쿠미츠빌딩 2F</span>
+      <span class="access-label">가까운 역</span><span class="access-value">🚇 호스이스스키노역 7번 출구 (도보 1분)</span>
+      <span class="access-label"></span><span class="access-value">🚇 스스키노역 (도보 5분)</span>
+      <span class="access-label">영업시간</span><span class="access-value">월~토 18:00–24:00 (L.O. 23:30)</span>
+      <span class="access-label">휴무일</span><span class="access-value">일요일 및 공휴일</span>
+      <span class="access-label">전화</span><span class="access-value">011-511-7667</span>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0 16px;"><span style="font-family: var(--font-serif); font-size: 16px; color: var(--color-gold-light);">🚕 택시 기사에게 보여주세요</span></div>
+    <div class="taxi-card">
+      <div class="taxi-label">목적지</div>
+      <div class="taxi-address">札幌市中央区<br>南6条西3丁目<br>アクミツビル 2F</div>
+      <div class="taxi-instruction">「縁屋」までお願いします</div>
+    </div>
+  </section>
+
+</div>
+
+<div class="goodbye">
+  <div class="phrase-ja">ごちそうさまでした</div>
+  <div class="phrase-reading">"고치소사마데시타"</div>
+  <div class="phrase-meaning">잘 먹었습니다!<br><span style="color: var(--color-text-dim);">퇴장 시 셰프에게 이 인사를 건네세요 — 최고의 칭찬입니다.</span></div>
+</div>
+
+<div class="footer">酒日和 縁屋 — 삿포로시 주오구 미나미6조 니시3 — TEL 011-511-7667</div>
+
+</div><!-- /lang-ko -->
+
+
+<script>
+function switchLang(lang) {
+  document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.lang-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+  document.querySelector('.lang-tab[onclick*="' + lang + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
