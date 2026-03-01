@@ -92,6 +92,7 @@
   #en .photo::after { content:"※ Photo is for illustration"; }
   #zh .photo::after { content:"※ 照片仅供参考"; }
   #ko .photo::after { content:"※ 사진은 예시입니다"; }
+  .photo.no-label::after { display:none; }
   .photo.crop-warm img { filter: brightness(1.12) contrast(1.05) saturate(1.35) sepia(0.08); }
 
   /* TIKTOK CTA */
@@ -156,7 +157,65 @@
 
   .ft { text-align:center; padding:40px 20px; font-size:13px; color:var(--txt3); letter-spacing:1px; line-height:2.2; }
 
-  @media(max-width:600px) { .wrap{padding:0 16px;} .overview,.dish,.eat,.dcard{padding:20px;} .temp-bar{flex-direction:column;} }
+  @media(max-width:600px) {
+    .wrap{padding:0 14px;}
+    .overview,.dish,.dcard{padding:18px;}
+    .temp-bar{flex-direction:column;}
+
+    /* 食べ方セクション — スマホ最適化 */
+    .eat {
+      padding:18px 16px 20px;
+      border-radius:6px;
+      border-color:var(--border-g);
+    }
+    .eat-title {
+      font-size:15px;
+      letter-spacing:2px;
+      margin-bottom:14px;
+      padding-bottom:10px;
+      border-bottom:1px solid var(--border);
+    }
+    .eat ol {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .eat li {
+      font-size:15px;
+      line-height:1.95;
+      padding:8px 0 8px 0;
+      gap:12px;
+      border-bottom:1px dotted rgba(58,50,41,.5);
+    }
+    .eat li:last-child {
+      border-bottom:none;
+      padding-bottom:0;
+    }
+    .eat li::before {
+      font-size:18px;
+      min-width:26px;
+      height:26px;
+      line-height:26px;
+      background:rgba(200,164,94,.12);
+      border-radius:50%;
+      text-align:center;
+      flex-shrink:0;
+      margin-top:2px;
+    }
+    .eat strong {
+      font-weight:600;
+      text-decoration:underline;
+      text-decoration-color:rgba(223,192,122,.4);
+      text-underline-offset:3px;
+    }
+    .eat .warn {
+      display:inline-block;
+      background:rgba(196,92,74,.12);
+      padding:2px 6px;
+      border-radius:3px;
+      text-decoration:none;
+    }
+  }
   @media print { .tabs{display:none;} body{background:#fff;color:#1a1410;} .photo img{filter:none;} }
 </style>
 </head>
@@ -215,7 +274,7 @@
     <div class="dish-num">— FIRST COURSE —</div>
     <div class="dish-ja">先付け</div>
     <div class="dish-en">Appetizer — "Sakizuke"</div>
-    <div class="photo crop-40"><img src="先付け.jpg" alt="先付け"></div>
+    <div class="photo crop-40 no-label"><img src="先付け.jpg" alt="先付け"></div>
     <div class="dish-desc">
       コースの始まりを告げる一品。季節により内容が変わります。<br>
       （一例：煮つぶ — 北海道産のつぶ貝をじっくり煮込んだもの）
@@ -495,7 +554,7 @@
   <div class="dish-num">— APPETIZER —</div>
   <div class="dish-ja">先付け</div>
   <div class="dish-en">Appetizer — "Sakizuke"</div>
-  <div class="photo crop-40"><img src="先付け.jpg" alt="Appetizer"></div>
+  <div class="photo crop-40 no-label"><img src="先付け.jpg" alt="Appetizer"></div>
   <div class="dish-desc">The opening dish of the course. Changes with the season.<br>(Example: Simmered Whelk "Nitsubu" — Hokkaido sea snails slowly simmered)</div>
   <div class="eat"><div class="eat-title">🐚 How to Eat Nitsubu</div><ol>
     <li>A <strong>toothpick is inserted</strong> into the whelk</li>
@@ -679,7 +738,7 @@
 
 <section class="sec"><div class="dish">
   <div class="dish-ja">前菜</div><div class="dish-en">Appetizer — "Sakizuke"</div>
-  <div class="photo crop-40"><img src="先付け.jpg" alt="前菜"></div>
+  <div class="photo crop-40 no-label"><img src="先付け.jpg" alt="前菜"></div>
   <div class="dish-desc">开启套餐的第一道菜。内容随季节变化。<br>（一例：煮海螺 — 北海道产海螺慢炖入味）</div>
   <div class="eat"><div class="eat-title">🐚 煮海螺吃法</div><ol>
     <li>海螺上<strong>插着牙签</strong></li>
@@ -843,7 +902,7 @@
 
 <section class="sec"><div class="dish">
   <div class="dish-ja">전채</div><div class="dish-en">Appetizer — "Sakizuke"</div>
-  <div class="photo crop-40"><img src="先付け.jpg" alt="전채"></div>
+  <div class="photo crop-40 no-label"><img src="先付け.jpg" alt="전채"></div>
   <div class="dish-desc">코스의 시작을 알리는 첫 요리. 계절에 따라 내용이 달라집니다.<br>(예시: 니츠부 — 홋카이도산 골뱅이를 천천히 조린 것)</div>
   <div class="eat"><div class="eat-title">🐚 니츠부 먹는 법</div><ol>
     <li>골뱅이에 <strong>이쑤시개가 꽂혀 있습니다</strong></li>
