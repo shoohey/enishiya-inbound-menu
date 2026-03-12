@@ -215,89 +215,93 @@
     .eat-grid { grid-template-columns:1fr; }
   }
   @media print {
-    @page { size:A4; margin:10mm 12mm; }
-    body { background:#fff; color:#1a1410; font-size:11px; line-height:1.5; }
+    @page { size:A4; margin:8mm 10mm; }
+    body { background:#fff; color:#1a1410; font-size:10px; line-height:1.4; }
 
-    /* 各料理セクションをページ内に収める */
-    .sec { page-break-inside:avoid; break-inside:avoid; padding:16px 0; border-bottom:1px solid #ccc; }
-    .dish { margin-bottom:8px; }
+    /* === 1品 = 1ページ === */
+    .sec { padding:0; border-bottom:none; page-break-after:always; break-after:page; }
+    .sec:last-child { page-break-after:auto; }
+    .dish { margin-bottom:0; }
 
-    /* 写真を小さく */
-    .photo { aspect-ratio:16/6; margin-bottom:6px; max-height:140px; }
-    .photo img { filter:none; }
-    .photo::after { color:rgba(0,0,0,.5); background:rgba(255,255,255,.7); }
+    /* 写真 — アスペクト比保持で縮小・中央配置 */
+    .photo {
+      width:45%; aspect-ratio:auto; max-height:120px;
+      margin:0 auto 8px; border:1px solid #ccc; border-radius:2px;
+      display:block;
+    }
+    .photo img { filter:none; object-fit:cover; }
+    .photo::after { font-size:0; display:none; }
 
-    /* 料理名をコンパクトに */
-    .dish-ja { font-size:16px; letter-spacing:2px; }
-    .dish-sub-names { margin-bottom:6px; }
-    .dish-sub-names .name-line { font-size:11px; line-height:1.5; }
+    /* 料理名 */
+    .dish-num { font-size:9px; color:#8a7342; }
+    .dish-ja { font-size:15px; letter-spacing:2px; margin-bottom:2px; }
+    .dish-sub-names { margin-bottom:4px; }
+    .dish-sub-names .name-line { font-size:10px; line-height:1.4; }
 
-    /* 説明文を縮小 */
-    .ml-block { margin-bottom:8px; }
-    .ml-item { padding:3px 0; font-size:10.5px; line-height:1.5; }
-    .ml-block .lang-label { font-size:8px; padding:1px 4px; margin-right:4px; }
+    /* 説明文 — 4言語 */
+    .ml-block { margin-bottom:6px; }
+    .ml-item { padding:2px 0; font-size:9.5px; line-height:1.45; }
+    .ml-item + .ml-item { border-top:1px solid #e0e0e0; }
+    .ml-item.ja-item { color:#1a1410; }
+    .ml-block .lang-label { font-size:7px; padding:1px 3px; margin-right:3px; border-radius:2px; }
 
-    /* 食べ方セクション */
-    .eat { padding:10px 12px; margin-bottom:6px; background:#f5f3f0; border:1px solid #ddd; }
-    .eat-title { font-size:11px; letter-spacing:1px; margin-bottom:6px; color:#8a7342; }
-    .eat-grid { gap:6px 12px; }
-    .eat li { font-size:10px; line-height:1.5; padding:2px 0 2px 22px; }
-    .eat li::before { font-size:12px; width:16px; color:#8a7342; }
-    .eat-lang-label { font-size:8px; padding:1px 4px; margin-bottom:3px; }
-    .eat strong { color:#6b5a30; }
+    /* 食べ方 — 2x2グリッド */
+    .eat { padding:8px 10px; margin-bottom:4px; background:#f7f5f2; border:1px solid #ddd; page-break-inside:avoid; }
+    .eat-title { font-size:10px; letter-spacing:1px; margin-bottom:5px; color:#8a7342; }
+    .eat-grid { gap:4px 10px; }
+    .eat li { font-size:9px; line-height:1.4; padding:1px 0 1px 18px; }
+    .eat li::before { font-size:10px; width:14px; color:#8a7342; top:2px; }
+    .eat-lang-label { font-size:7px; padding:1px 3px; margin-bottom:2px; border-radius:2px; }
+    .eat strong { color:#5a4a25; }
     .eat .warn { color:#c45c4a; }
 
-    /* ヘッダー・概要をコンパクトに */
-    .qr-section { padding:16px; border-bottom:1px solid #333; }
-    .qr-box { padding:12px 16px; }
-    .qr-placeholder { width:100px; height:100px; margin-bottom:8px; }
-    .qr-msg { font-size:10px; line-height:1.6; }
-    .hd { padding:20px 10px 16px; }
+    /* === トップページ（QR・ヘッダー・概要）=== */
+    .qr-section { padding:12px; border-bottom:1px solid #999; background:#fff; page-break-after:auto; }
+    .qr-box { padding:10px 14px; border:1px solid #999; background:#fafafa; }
+    .qr-box .qr-title { font-size:10px; color:#8a7342; margin-bottom:8px; }
+    .qr-placeholder { width:90px; height:90px; margin-bottom:6px; border:1px dashed #999; }
+    .qr-msg { font-size:9px; line-height:1.5; color:#555; }
+    .hd { padding:14px 10px 10px; }
     .hd::after { display:none; }
-    .hd h1 { font-size:24px; letter-spacing:6px; }
-    .hd .sub { font-size:12px; }
-    .hd .sub-zh, .hd .sub-ko { font-size:11px; }
-    .hd .badge { padding:4px 14px; font-size:12px; }
+    .hd h1 { font-size:22px; letter-spacing:5px; margin-bottom:2px; }
+    .hd .sub { font-size:11px; margin-bottom:2px; color:#8a7342; }
+    .hd .sub-zh, .hd .sub-ko { font-size:10px; color:#666; margin-bottom:1px; }
+    .hd .badge { padding:3px 12px; font-size:11px; border:1px solid #ccc; color:#8a7342; }
 
     /* コース概要 */
-    .overview { padding:14px; margin-bottom:12px; background:#f9f7f3; border:1px solid #ddd; }
+    .overview { padding:10px 14px; margin-bottom:8px; background:#fafafa; border:1px solid #ddd; }
     .overview::before { display:none; }
-    .overview .price { font-size:22px; color:#8a7342; }
-    .overview .pn { font-size:11px; line-height:1.6; margin-bottom:4px; }
-    .overview .note { font-size:11px; line-height:1.6; }
-    .flow { margin-top:8px; }
-    .fi { padding:3px 0; }
-    .fi::before { width:6px; height:6px; background:#8a7342; }
-    .fi-n { font-size:12px; }
-    .fi-e { font-size:10px; }
+    .overview .price { font-size:20px; color:#8a7342; }
+    .overview .pn { font-size:10px; line-height:1.5; margin-bottom:3px; color:#555; }
+    .overview .note { font-size:10px; line-height:1.5; color:#555; }
+    .flow { margin-top:6px; }
+    .fi { padding:2px 0; }
+    .fi::before { width:5px; height:5px; background:#8a7342; }
+    .fi-n { font-size:11px; letter-spacing:1px; }
+    .fi-e { font-size:9px; }
 
     /* YouTube非表示 */
     .youtube-cta { display:none; }
 
     /* アレルギー */
-    .allergy { padding:12px; background:#f5f3f0; border:1px solid #ddd; }
-    .al-title { font-size:13px; color:#8a7342; }
-    .al-t { font-size:11px; padding:3px 8px; }
-    .al-p { padding:8px; }
-    .al-p .phrase-line.main { font-size:13px; }
-    .al-p .phrase-line.sub { font-size:10px; }
+    .allergy { padding:10px; background:#f7f5f2; border:1px solid #ddd; }
+    .al-title { font-size:12px; color:#8a7342; margin-bottom:8px; }
+    .al-t { font-size:10px; padding:2px 6px; background:#eee; }
+    .al-p { padding:6px; }
+    .al-p .phrase-line.main { font-size:12px; }
+    .al-p .phrase-line.sub { font-size:9px; color:#555; }
 
     /* フッター */
-    .ft { padding:16px; font-size:11px; }
+    .ft { padding:10px; font-size:10px; color:#666; }
 
     /* wrap幅を広げる */
-    .wrap { max-width:100%; padding:0 8px; }
+    .wrap { max-width:100%; padding:0 4px; }
 
-    /* 色の調整（白背景向け） */
-    .dish-num { color:#8a7342; }
-    .ml-block .lang-label.ja { background:rgba(200,164,94,.3); color:#6b5a30; }
-    .ml-block .lang-label.en { background:rgba(100,149,237,.25); color:#3a6db5; }
-    .ml-block .lang-label.zh { background:rgba(220,80,60,.2); color:#b04030; }
-    .ml-block .lang-label.ko { background:rgba(80,180,120,.2); color:#2a8050; }
-    .eat-lang-label.ja { background:rgba(200,164,94,.3); color:#6b5a30; }
-    .eat-lang-label.en { background:rgba(100,149,237,.25); color:#3a6db5; }
-    .eat-lang-label.zh { background:rgba(220,80,60,.2); color:#b04030; }
-    .eat-lang-label.ko { background:rgba(80,180,120,.2); color:#2a8050; }
+    /* 印刷用カラーラベル */
+    .ml-block .lang-label.ja, .eat-lang-label.ja { background:rgba(200,164,94,.3); color:#6b5a30; }
+    .ml-block .lang-label.en, .eat-lang-label.en { background:rgba(100,149,237,.25); color:#3a6db5; }
+    .ml-block .lang-label.zh, .eat-lang-label.zh { background:rgba(220,80,60,.2); color:#b04030; }
+    .ml-block .lang-label.ko, .eat-lang-label.ko { background:rgba(80,180,120,.2); color:#2a8050; }
   }
 </style>
 </head>
