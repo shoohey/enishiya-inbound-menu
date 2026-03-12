@@ -214,7 +214,91 @@
     }
     .eat-grid { grid-template-columns:1fr; }
   }
-  @media print { body{background:#fff;color:#1a1410;} .photo img{filter:none;} .qr-section{border-bottom-color:#333;} }
+  @media print {
+    @page { size:A4; margin:10mm 12mm; }
+    body { background:#fff; color:#1a1410; font-size:11px; line-height:1.5; }
+
+    /* 各料理セクションをページ内に収める */
+    .sec { page-break-inside:avoid; break-inside:avoid; padding:16px 0; border-bottom:1px solid #ccc; }
+    .dish { margin-bottom:8px; }
+
+    /* 写真を小さく */
+    .photo { aspect-ratio:16/6; margin-bottom:6px; max-height:140px; }
+    .photo img { filter:none; }
+    .photo::after { color:rgba(0,0,0,.5); background:rgba(255,255,255,.7); }
+
+    /* 料理名をコンパクトに */
+    .dish-ja { font-size:16px; letter-spacing:2px; }
+    .dish-sub-names { margin-bottom:6px; }
+    .dish-sub-names .name-line { font-size:11px; line-height:1.5; }
+
+    /* 説明文を縮小 */
+    .ml-block { margin-bottom:8px; }
+    .ml-item { padding:3px 0; font-size:10.5px; line-height:1.5; }
+    .ml-block .lang-label { font-size:8px; padding:1px 4px; margin-right:4px; }
+
+    /* 食べ方セクション */
+    .eat { padding:10px 12px; margin-bottom:6px; background:#f5f3f0; border:1px solid #ddd; }
+    .eat-title { font-size:11px; letter-spacing:1px; margin-bottom:6px; color:#8a7342; }
+    .eat-grid { gap:6px 12px; }
+    .eat li { font-size:10px; line-height:1.5; padding:2px 0 2px 22px; }
+    .eat li::before { font-size:12px; width:16px; color:#8a7342; }
+    .eat-lang-label { font-size:8px; padding:1px 4px; margin-bottom:3px; }
+    .eat strong { color:#6b5a30; }
+    .eat .warn { color:#c45c4a; }
+
+    /* ヘッダー・概要をコンパクトに */
+    .qr-section { padding:16px; border-bottom:1px solid #333; }
+    .qr-box { padding:12px 16px; }
+    .qr-placeholder { width:100px; height:100px; margin-bottom:8px; }
+    .qr-msg { font-size:10px; line-height:1.6; }
+    .hd { padding:20px 10px 16px; }
+    .hd::after { display:none; }
+    .hd h1 { font-size:24px; letter-spacing:6px; }
+    .hd .sub { font-size:12px; }
+    .hd .sub-zh, .hd .sub-ko { font-size:11px; }
+    .hd .badge { padding:4px 14px; font-size:12px; }
+
+    /* コース概要 */
+    .overview { padding:14px; margin-bottom:12px; background:#f9f7f3; border:1px solid #ddd; }
+    .overview::before { display:none; }
+    .overview .price { font-size:22px; color:#8a7342; }
+    .overview .pn { font-size:11px; line-height:1.6; margin-bottom:4px; }
+    .overview .note { font-size:11px; line-height:1.6; }
+    .flow { margin-top:8px; }
+    .fi { padding:3px 0; }
+    .fi::before { width:6px; height:6px; background:#8a7342; }
+    .fi-n { font-size:12px; }
+    .fi-e { font-size:10px; }
+
+    /* YouTube非表示 */
+    .youtube-cta { display:none; }
+
+    /* アレルギー */
+    .allergy { padding:12px; background:#f5f3f0; border:1px solid #ddd; }
+    .al-title { font-size:13px; color:#8a7342; }
+    .al-t { font-size:11px; padding:3px 8px; }
+    .al-p { padding:8px; }
+    .al-p .phrase-line.main { font-size:13px; }
+    .al-p .phrase-line.sub { font-size:10px; }
+
+    /* フッター */
+    .ft { padding:16px; font-size:11px; }
+
+    /* wrap幅を広げる */
+    .wrap { max-width:100%; padding:0 8px; }
+
+    /* 色の調整（白背景向け） */
+    .dish-num { color:#8a7342; }
+    .ml-block .lang-label.ja { background:rgba(200,164,94,.3); color:#6b5a30; }
+    .ml-block .lang-label.en { background:rgba(100,149,237,.25); color:#3a6db5; }
+    .ml-block .lang-label.zh { background:rgba(220,80,60,.2); color:#b04030; }
+    .ml-block .lang-label.ko { background:rgba(80,180,120,.2); color:#2a8050; }
+    .eat-lang-label.ja { background:rgba(200,164,94,.3); color:#6b5a30; }
+    .eat-lang-label.en { background:rgba(100,149,237,.25); color:#3a6db5; }
+    .eat-lang-label.zh { background:rgba(220,80,60,.2); color:#b04030; }
+    .eat-lang-label.ko { background:rgba(80,180,120,.2); color:#2a8050; }
+  }
 </style>
 </head>
 <body>
