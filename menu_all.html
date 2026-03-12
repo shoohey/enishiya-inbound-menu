@@ -159,8 +159,8 @@
   .eat li::before { content:counter(s); font:400 17px var(--en); color:var(--gold); position:absolute; left:0; top:6px; width:22px; text-align:center; }
   .eat strong { color:var(--gold-l); font-weight:500; }
   .eat .warn { color:var(--red); font-weight:500; }
-  .eat-lang-block { margin-bottom:16px; }
-  .eat-lang-block:last-child { margin-bottom:0; }
+  .eat-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px 18px; }
+  .eat-lang-block { margin-bottom:0; }
   .eat-lang-label {
     display:inline-block; font-size:10px; font-weight:700;
     letter-spacing:1px; padding:2px 6px; border-radius:3px;
@@ -212,6 +212,7 @@
       font-size:12px;
       width:18px;
     }
+    .eat-grid { grid-template-columns:1fr; }
   }
   @media print { body{background:#fff;color:#1a1410;} .photo img{filter:none;} .qr-section{border-bottom-color:#333;} }
 </style>
@@ -320,37 +321,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F41A; 煮つぶの食べ方 / How to Eat Nitsubu</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>つぶ貝に楊枝が刺さっています</li>
-          <li>楊枝をくるくる回しながら身を引き出してください</li>
-          <li>煮汁にも旨みが凝縮されています &mdash; 一緒にお楽しみください</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>A toothpick is inserted into the whelk</li>
-          <li>Twist the toothpick and gently pull the meat out in a spiral</li>
-          <li>The simmering broth is packed with flavor &mdash; enjoy it together</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>海螺上插着牙签</li>
-          <li>旋转牙签，将螺肉螺旋状拉出</li>
-          <li>炖汁也充满鲜味 &mdash; 请一起品尝</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>골뱅이에 이쑤시개가 꽂혀 있습니다</li>
-          <li>이쑤시개를 돌리면서 살을 나선형으로 빼내세요</li>
-          <li>조림국물에도 감칠맛이 가득 &mdash; 함께 즐기세요</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>つぶ貝に楊枝が刺さっています</li>
+            <li>楊枝をくるくる回しながら身を引き出してください</li>
+            <li>煮汁にも旨みが凝縮されています &mdash; 一緒にお楽しみください</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>海螺上插着牙签</li>
+            <li>旋转牙签，将螺肉螺旋状拉出</li>
+            <li>炖汁也充满鲜味 &mdash; 请一起品尝</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>A toothpick is inserted into the whelk</li>
+            <li>Twist the toothpick and gently pull the meat out in a spiral</li>
+            <li>The simmering broth is packed with flavor &mdash; enjoy it together</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>골뱅이에 이쑤시개가 꽂혀 있습니다</li>
+            <li>이쑤시개를 돌리면서 살을 나선형으로 빼내세요</li>
+            <li>조림국물에도 감칠맛이 가득 &mdash; 함께 즐기세요</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -383,37 +386,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F944; 食べ方 / How to Eat</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>熱いのでお気をつけください</li>
-          <li>スプーンでお召し上がりください</li>
-          <li>中のお野菜とカニの身も一緒にどうぞ</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li><span class="warn">Caution: very hot!</span></li>
-          <li>Eat with the spoon provided</li>
-          <li>Enjoy the vegetables and crab meat hidden inside</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li><span class="warn">非常烫，请小心！</span></li>
-          <li>请用勺子食用</li>
-          <li>里面的蔬菜和蟹肉一起享用</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li><span class="warn">매우 뜨거우니 조심하세요!</span></li>
-          <li>숟가락으로 드세요</li>
-          <li>안에 숨겨진 채소와 게살도 함께 즐기세요</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>熱いのでお気をつけください</li>
+            <li>スプーンでお召し上がりください</li>
+            <li>中のお野菜とカニの身も一緒にどうぞ</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li><span class="warn">非常烫，请小心！</span></li>
+            <li>请用勺子食用</li>
+            <li>里面的蔬菜和蟹肉一起享用</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li><span class="warn">Caution: very hot!</span></li>
+            <li>Eat with the spoon provided</li>
+            <li>Enjoy the vegetables and crab meat hidden inside</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li><span class="warn">매우 뜨거우니 조심하세요!</span></li>
+            <li>숟가락으로 드세요</li>
+            <li>안에 숨겨진 채소와 게살도 함께 즐기세요</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -472,33 +477,35 @@
     <div class="eat">
       <div class="eat-title">&#x1F980; 食べ方 &mdash; 2本それぞれの楽しみ方 / Each Leg Has Its Own Way!</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>1本目：そのまま蟹酢につけてお召し上がりください</li>
-          <li>2本目：蟹酢の中にすだちを搾ってからお召し上がりください</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>Leg 1: Dip directly into the kani-zu sauce</li>
-          <li>Leg 2: Squeeze sudachi citrus into the kani-zu, then dip</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>第1根：直接蘸蟹醋食用</li>
-          <li>第2根：将酢橘汁挤入蟹醋中，再蘸着吃</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>1번째: 게 식초에 그대로 찍어 드세요</li>
-          <li>2번째: 게 식초에 스다치를 짜 넣고 찍어 드세요</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>1本目：そのまま蟹酢につけてお召し上がりください</li>
+            <li>2本目：蟹酢の中にすだちを搾ってからお召し上がりください</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>第1根：直接蘸蟹醋食用</li>
+            <li>第2根：将酢橘汁挤入蟹醋中，再蘸着吃</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>Leg 1: Dip directly into the kani-zu sauce</li>
+            <li>Leg 2: Squeeze sudachi citrus into the kani-zu, then dip</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>1번째: 게 식초에 그대로 찍어 드세요</li>
+            <li>2번째: 게 식초에 스다치를 짜 넣고 찍어 드세요</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -531,41 +538,43 @@
     <div class="eat">
       <div class="eat-title">&#x1F980; 食べ方 &mdash; とても大事！ / Important!</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>蟹味噌は温まってる状態で届きます</li>
-          <li>蟹脚2本を味噌の中に入れます</li>
-          <li>20〜30秒ほどしっかりと味噌を絡めてお召し上がりください</li>
-          <li><span class="warn">蟹味噌はこの後の「共和え」と「甲羅酒」にも使いますので、全部は使い切らないでください</span></li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>The crab miso is already warmed and ready</li>
-          <li>Place your 2 crab legs into the miso</li>
-          <li>Cook for about 20&ndash;30 seconds, making sure the miso coats the meat well</li>
-          <li><span class="warn">Don&rsquo;t use all the miso! You&rsquo;ll need some for the next dish (Tomo-ae) and Shell Sake</span></li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>蟹黄已经是加热好的状态</li>
-          <li>将2根蟹腿放入蟹黄中</li>
-          <li>涮约20~30秒，让蟹黄充分包裹蟹肉后食用</li>
-          <li><span class="warn">不要用完所有蟹黄！后面的「拌蟹肉」和「甲壳酒」还要用</span></li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>게 미소는 이미 데워진 상태입니다</li>
-          <li>게 다리 2개를 미소 안에 넣으세요</li>
-          <li>약 20~30초 미소를 충분히 묻혀서 드세요</li>
-          <li><span class="warn">미소를 다 쓰지 마세요! 다음 「토모아에」와 「갑각주」에도 씁니다</span></li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>蟹味噌は温まってる状態で届きます</li>
+            <li>蟹脚2本を味噌の中に入れます</li>
+            <li>20〜30秒ほどしっかりと味噌を絡めてお召し上がりください</li>
+            <li><span class="warn">蟹味噌はこの後の「共和え」と「甲羅酒」にも使いますので、全部は使い切らないでください</span></li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>蟹黄已经是加热好的状态</li>
+            <li>将2根蟹腿放入蟹黄中</li>
+            <li>涮约20~30秒，让蟹黄充分包裹蟹肉后食用</li>
+            <li><span class="warn">不要用完所有蟹黄！后面的「拌蟹肉」和「甲壳酒」还要用</span></li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>The crab miso is already warmed and ready</li>
+            <li>Place your 2 crab legs into the miso</li>
+            <li>Cook for about 20&ndash;30 seconds, making sure the miso coats the meat well</li>
+            <li><span class="warn">Don&rsquo;t use all the miso! You&rsquo;ll need some for the next dish (Tomo-ae) and Shell Sake</span></li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>게 미소는 이미 데워진 상태입니다</li>
+            <li>게 다리 2개를 미소 안에 넣으세요</li>
+            <li>약 20~30초 미소를 충분히 묻혀서 드세요</li>
+            <li><span class="warn">미소를 다 쓰지 마세요! 다음 「토모아에」와 「갑각주」에도 씁니다</span></li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -598,37 +607,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F980; 食べ方 / How to Eat</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>毛蟹のほぐし身のお皿が届きます</li>
-          <li>残った蟹味噌をすべてほぐし身の上にかけてください</li>
-          <li>よく混ぜて「共和え」としてお召し上がりください</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>A plate of picked crab meat (hogushi-mi) is served</li>
-          <li>Pour ALL the remaining crab miso over the crab meat</li>
-          <li>Mix well and enjoy &mdash; this is &ldquo;Tomo-ae&rdquo; (together mix)</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>会送上一盘手拆蟹肉</li>
-          <li>将剩余的蟹黄全部浇在蟹肉上</li>
-          <li>充分搅拌后享用 &mdash; 这就是「共和え」（混合拌）</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>손으로 발라낸 게살 접시가 나옵니다</li>
-          <li>남은 게 미소를 전부 게살 위에 부으세요</li>
-          <li>잘 섞어서 드세요 &mdash; 이것이 「토모아에」(함께 비비기)입니다</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>毛蟹のほぐし身のお皿が届きます</li>
+            <li>残った蟹味噌をすべてほぐし身の上にかけてください</li>
+            <li>よく混ぜて「共和え」としてお召し上がりください</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>会送上一盘手拆蟹肉</li>
+            <li>将剩余的蟹黄全部浇在蟹肉上</li>
+            <li>充分搅拌后享用 &mdash; 这就是「共和え」（混合拌）</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>A plate of picked crab meat (hogushi-mi) is served</li>
+            <li>Pour ALL the remaining crab miso over the crab meat</li>
+            <li>Mix well and enjoy &mdash; this is &ldquo;Tomo-ae&rdquo; (together mix)</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>손으로 발라낸 게살 접시가 나옵니다</li>
+            <li>남은 게 미소를 전부 게살 위에 부으세요</li>
+            <li>잘 섞어서 드세요 &mdash; 이것이 「토모아에」(함께 비비기)입니다</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -661,45 +672,47 @@
     <div class="eat">
       <div class="eat-title">&#x1F376; 楽しみ方 / How to Enjoy</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>蟹味噌は全てしっかりとお召し上がりください</li>
-          <li>甲羅の中の味噌がなくなったら、熱燗（日本酒）をお持ちします</li>
-          <li>甲羅に熱燗を注いでいただいて残った蟹味噌を溶かしながら、蟹の甲羅の端を持って直接お飲みください</li>
-          <li><span class="warn">お熱いので火傷に注意してください</span></li>
-          <li>蟹の旨みが凝縮された、通だけが知る至福の一杯です</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>Please finish all the crab miso first</li>
-          <li>Once the miso is gone, hot sake (atsukan) will be brought to you</li>
-          <li>Pour the sake into the shell, dissolve the remaining miso, and drink directly from the edge of the shell</li>
-          <li><span class="warn">Caution: very hot &mdash; be careful of burns!</span></li>
-          <li>A connoisseur&rsquo;s ultimate pleasure &mdash; the essence of crab in one cup</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>请先将蟹黄全部吃完</li>
-          <li>蟹黄吃完后，会为您端来热清酒（日本酒）</li>
-          <li>将热酒倒入蟹壳中，溶化残留的蟹黄，手持蟹壳边缘直接饮用</li>
-          <li><span class="warn">非常烫，请小心烫伤！</span></li>
-          <li>行家才知道的至高享受 &mdash; 螃蟹精华浓缩的一杯</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>게 미소를 먼저 전부 드세요</li>
-          <li>미소를 다 드시면, 뜨거운 사케(일본주)를 가져다 드립니다</li>
-          <li>사케를 껍데기에 부어 남은 미소를 녹이면서, 껍데기 가장자리를 잡고 직접 마시세요</li>
-          <li><span class="warn">매우 뜨거우니 화상에 주의하세요!</span></li>
-          <li>통만이 아는 최고의 즐거움 &mdash; 게의 감칠맛이 응축된 한 잔</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>蟹味噌は全てしっかりとお召し上がりください</li>
+            <li>甲羅の中の味噌がなくなったら、熱燗（日本酒）をお持ちします</li>
+            <li>甲羅に熱燗を注いでいただいて残った蟹味噌を溶かしながら、蟹の甲羅の端を持って直接お飲みください</li>
+            <li><span class="warn">お熱いので火傷に注意してください</span></li>
+            <li>蟹の旨みが凝縮された、通だけが知る至福の一杯です</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>请先将蟹黄全部吃完</li>
+            <li>蟹黄吃完后，会为您端来热清酒（日本酒）</li>
+            <li>将热酒倒入蟹壳中，溶化残留的蟹黄，手持蟹壳边缘直接饮用</li>
+            <li><span class="warn">非常烫，请小心烫伤！</span></li>
+            <li>行家才知道的至高享受 &mdash; 螃蟹精华浓缩的一杯</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>Please finish all the crab miso first</li>
+            <li>Once the miso is gone, hot sake (atsukan) will be brought to you</li>
+            <li>Pour the sake into the shell, dissolve the remaining miso, and drink directly from the edge of the shell</li>
+            <li><span class="warn">Caution: very hot &mdash; be careful of burns!</span></li>
+            <li>A connoisseur&rsquo;s ultimate pleasure &mdash; the essence of crab in one cup</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>게 미소를 먼저 전부 드세요</li>
+            <li>미소를 다 드시면, 뜨거운 사케(일본주)를 가져다 드립니다</li>
+            <li>사케를 껍데기에 부어 남은 미소를 녹이면서, 껍데기 가장자리를 잡고 직접 마시세요</li>
+            <li><span class="warn">매우 뜨거우니 화상에 주의하세요!</span></li>
+            <li>통만이 아는 최고의 즐거움 &mdash; 게의 감칠맛이 응축된 한 잔</li>
+          </ol>
+        </div>
       </div>
     </div>
 
@@ -733,37 +746,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F980; 食べ方 / How to Eat</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>すだちを搾ってカニにかけてください</li>
-          <li>わさびを添えてお召し上がりください</li>
-          <li>すでに味が入っているので、醤油は不要です</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>Squeeze sudachi citrus over the crab</li>
-          <li>Add wasabi on top</li>
-          <li>No soy sauce needed &mdash; the flavor is already infused</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>将酢橘汁挤在蟹肉上</li>
-          <li>配上芥末食用</li>
-          <li>已经入味，无需再蘸酱油</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>스다치를 게살 위에 짜주세요</li>
-          <li>와사비를 올려서 드세요</li>
-          <li>이미 간이 되어 있으므로 간장은 불필요합니다</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>すだちを搾ってカニにかけてください</li>
+            <li>わさびを添えてお召し上がりください</li>
+            <li>すでに味が入っているので、醤油は不要です</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>将酢橘汁挤在蟹肉上</li>
+            <li>配上芥末食用</li>
+            <li>已经入味，无需再蘸酱油</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>Squeeze sudachi citrus over the crab</li>
+            <li>Add wasabi on top</li>
+            <li>No soy sauce needed &mdash; the flavor is already infused</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>스다치를 게살 위에 짜주세요</li>
+            <li>와사비를 올려서 드세요</li>
+            <li>이미 간이 되어 있으므로 간장은 불필요합니다</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -796,37 +811,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F980; 食べ方 / How to Eat</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li><span class="warn">毛蟹の天ぷら：爪の先は硬いので食べられません</span></li>
-          <li>白い身の部分だけお召し上がりください</li>
-          <li>お塩でも天つゆでも、お好みでどうぞ</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li><span class="warn">Crab claws: the tip is hard and cannot be eaten!</span></li>
-          <li>Eat only the white meat part</li>
-          <li>Dip in salt or tentsuyu sauce &mdash; your choice</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li><span class="warn">蟹钳尖端很硬，不能食用！</span></li>
-          <li>只吃白色蟹肉部分</li>
-          <li>蘸盐或天妇罗汁，随您喜好</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li><span class="warn">게 집게 끝부분은 딱딱해서 먹을 수 없습니다!</span></li>
-          <li>흰 살 부분만 드세요</li>
-          <li>소금 또는 텐츠유(튀김용 소스) 취향대로</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li><span class="warn">毛蟹の天ぷら：爪の先は硬いので食べられません</span></li>
+            <li>白い身の部分だけお召し上がりください</li>
+            <li>お塩でも天つゆでも、お好みでどうぞ</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li><span class="warn">蟹钳尖端很硬，不能食用！</span></li>
+            <li>只吃白色蟹肉部分</li>
+            <li>蘸盐或天妇罗汁，随您喜好</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li><span class="warn">Crab claws: the tip is hard and cannot be eaten!</span></li>
+            <li>Eat only the white meat part</li>
+            <li>Dip in salt or tentsuyu sauce &mdash; your choice</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li><span class="warn">게 집게 끝부분은 딱딱해서 먹을 수 없습니다!</span></li>
+            <li>흰 살 부분만 드세요</li>
+            <li>소금 또는 텐츠유(튀김용 소스) 취향대로</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
@@ -859,37 +876,39 @@
     <div class="eat">
       <div class="eat-title">&#x1F944; 食べ方 / How to Eat</div>
 
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ja">JA</div>
-        <ol>
-          <li>スプーンでお召し上がりください</li>
-          <li>蟹の旨みをすべて吸い込んだ〆の一品です</li>
-          <li>最後の一滴まで残さずどうぞ</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label en">EN</div>
-        <ol>
-          <li>Eat with the spoon provided</li>
-          <li>This is the essence of the entire crab, concentrated in every grain</li>
-          <li>Please enjoy every last drop!</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label zh">ZH</div>
-        <ol>
-          <li>请用勺子食用</li>
-          <li>一整只蟹的精华，浓缩在每一粒米中</li>
-          <li>请喝到最后一滴！</li>
-        </ol>
-      </div>
-      <div class="eat-lang-block">
-        <div class="eat-lang-label ko">KO</div>
-        <ol>
-          <li>숟가락으로 드세요</li>
-          <li>게 한 마리의 정수가 쌀알 하나하나에 담겨 있습니다</li>
-          <li>마지막 한 방울까지 남기지 마세요!</li>
-        </ol>
+      <div class="eat-grid">
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ja">JA</div>
+          <ol>
+            <li>スプーンでお召し上がりください</li>
+            <li>蟹の旨みをすべて吸い込んだ〆の一品です</li>
+            <li>最後の一滴まで残さずどうぞ</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label zh">ZH</div>
+          <ol>
+            <li>请用勺子食用</li>
+            <li>一整只蟹的精华，浓缩在每一粒米中</li>
+            <li>请喝到最后一滴！</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label en">EN</div>
+          <ol>
+            <li>Eat with the spoon provided</li>
+            <li>This is the essence of the entire crab, concentrated in every grain</li>
+            <li>Please enjoy every last drop!</li>
+          </ol>
+        </div>
+        <div class="eat-lang-block">
+          <div class="eat-lang-label ko">KO</div>
+          <ol>
+            <li>숟가락으로 드세요</li>
+            <li>게 한 마리의 정수가 쌀알 하나하나에 담겨 있습니다</li>
+            <li>마지막 한 방울까지 남기지 마세요!</li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
