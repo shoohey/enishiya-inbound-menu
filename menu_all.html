@@ -223,14 +223,13 @@
     .sec:last-child { page-break-after:auto; }
     .dish { margin-bottom:0; }
 
-    /* 写真 — アスペクト比保持で縮小・中央配置 */
+    /* 写真 — 横幅いっぱい */
     .photo {
-      width:45%; aspect-ratio:auto; max-height:120px;
-      margin:0 auto 8px; border:1px solid #ccc; border-radius:2px;
-      display:block;
+      width:100%; aspect-ratio:16/9; max-height:none;
+      margin:0 0 8px; border:1px solid #ccc; border-radius:2px;
     }
     .photo img { filter:none; object-fit:cover; }
-    .photo::after { font-size:0; display:none; }
+    .photo::after { display:none; }
 
     /* 料理名 */
     .dish-num { font-size:9px; color:#8a7342; }
