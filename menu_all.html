@@ -181,6 +181,27 @@
   .al-p .phrase-line.main { font:400 17px var(--serif); }
   .al-p .phrase-line.sub { font-size:13px; color:var(--txt2); }
 
+  /* DRINK MENU */
+  .drink-header { text-align:center; padding:48px 20px 32px; }
+  .drink-header h2 { font:300 30px/1.3 var(--serif); letter-spacing:8px; margin-bottom:6px; }
+  .drink-header .drink-sub { font:300 14px var(--en); letter-spacing:4px; color:var(--gold-d); margin-bottom:4px; }
+  .drink-header .drink-sub-zh { font:400 14px var(--sans); color:var(--txt3); margin-bottom:2px; }
+  .drink-header .drink-sub-ko { font:400 13px var(--sans); color:var(--txt3); }
+  .drink-cat { margin-bottom:36px; }
+  .drink-cat-title { font:400 20px var(--serif); letter-spacing:4px; color:var(--gold); border-bottom:1px solid var(--border-g); padding-bottom:10px; margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+  .drink-cat-sub { font:300 13px var(--en); color:var(--gold-d); letter-spacing:2px; }
+  .drink-item { background:var(--bg2); border:1px solid var(--border); padding:18px 22px; margin-bottom:12px; border-radius:4px; }
+  .drink-item-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+  .drink-name-ja { font:500 17px var(--serif); letter-spacing:2px; }
+  .drink-name-sub { font:400 13px var(--sans); color:var(--txt3); }
+  .drink-price { font:400 18px var(--en); color:var(--gold); white-space:nowrap; }
+  .drink-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .drink-tag { font-size:11px; padding:2px 8px; border-radius:3px; background:rgba(200,164,94,.1); color:var(--gold-d); border:1px solid var(--border-g); }
+  .drink-desc { font-size:13px; color:var(--txt2); line-height:1.8; }
+  .drink-desc .lang-label { font-size:9px; }
+  .drink-how { font-size:13px; color:var(--txt2); margin-top:6px; padding-top:6px; border-top:1px solid var(--border); }
+  .drink-how-title { font:400 12px var(--serif); color:var(--gold-l); letter-spacing:1px; margin-bottom:4px; }
+
   /* FOOTER */
   .ft { text-align:center; padding:40px 20px; font-size:13px; color:var(--txt3); letter-spacing:1px; line-height:2.2; }
 
@@ -287,6 +308,23 @@
 
     /* YouTube非表示 */
     .youtube-cta { display:none; }
+
+    /* ドリンクメニュー */
+    .drink-header { padding:16px 10px 10px; }
+    .drink-header h2 { font-size:20px; letter-spacing:4px; }
+    .drink-header .drink-sub { font-size:10px; color:#8a7342; }
+    .drink-header .drink-sub-zh, .drink-header .drink-sub-ko { font-size:9px; color:#666; }
+    .drink-cat { margin-bottom:14px; }
+    .drink-cat-title { font-size:15px; letter-spacing:2px; color:#8a7342; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:8px; }
+    .drink-item { padding:8px 12px; margin-bottom:6px; background:#fafafa; border:1px solid #ddd; }
+    .drink-name-ja { font-size:14px; }
+    .drink-name-sub { font-size:10px; }
+    .drink-price { font-size:14px; color:#8a7342; }
+    .drink-tag { font-size:9px; padding:1px 5px; }
+    .drink-desc { font-size:10px; line-height:1.5; }
+    .drink-how { font-size:10px; margin-top:4px; padding-top:4px; }
+    .drink-how-title { font-size:10px; }
+    .drink-sec { page-break-inside:avoid; }
 
     /* アレルギー */
     .allergy { padding:10px; background:#f7f5f2; border:1px solid #ddd; }
@@ -1031,6 +1069,427 @@
       <div class="ml-item"><span class="lang-label ko">KO</span>코스의 마지막을 장식하는 계절 디저트. 내용은 계절에 따라 달라집니다.</div>
     </div>
   </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- DRINK MENU                                                    -->
+<!-- ============================================================ -->
+<section class="sec">
+  <div class="drink-header">
+    <h2>飲み物</h2>
+    <div class="drink-sub">DRINK MENU</div>
+    <div class="drink-sub-zh">酒水菜单</div>
+    <div class="drink-sub-ko">음료 메뉴</div>
+  </div>
+
+  <!-- ===== 日本酒 ===== -->
+  <div class="drink-cat drink-sec">
+    <div class="drink-cat-title">&#x1F376; 日本酒 <span class="drink-cat-sub">Japanese Sake / 日本清酒 / 일본주</span></div>
+
+    <!-- 國稀 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">國稀 北海鬼ころし</span>
+          <span class="drink-name-sub">（普通酒）増毛／国稀酒造</span>
+        </div>
+        <span class="drink-price">&yen;800 <span style="font-size:12px;color:var(--txt3);">/ 1合(180ml)</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">穏やか Mild</span>
+        <span class="drink-tag">スッキリ Clean</span>
+        <span class="drink-tag">辛口 Dry</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 日本最北の酒蔵が醸す辛口酒。鬼ころしの名の通り、頑強な男でも酔いつぶれてしまうほどのうまい酒。<br>
+        <span class="lang-label en">EN</span> Dry sake from Japan's northernmost brewery. So delicious that even the toughest will be knocked out.<br>
+        <span class="lang-label zh">ZH</span> 日本最北酿酒厂的辛口清酒。名为"鬼杀"，美味到连壮汉都会醉倒。<br>
+        <span class="lang-label ko">KO</span> 일본 최북단 양조장의 드라이 사케. 이름처럼 강한 사람도 쓰러뜨릴 만큼 맛있는 술.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        冷酒(Chilled)・常温(Room temp)・ぬる燗(Warm)・熱燗(Hot)
+      </div>
+    </div>
+
+    <!-- 福司 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">福司 特別純米酒</span>
+          <span class="drink-name-sub">釧路／福司酒造 ・ 吟風60</span>
+        </div>
+        <span class="drink-price">&yen;1,000 <span style="font-size:12px;color:var(--txt3);">/ 1合</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">穏やか Mild</span>
+        <span class="drink-tag">スッキリ Clean</span>
+        <span class="drink-tag">やや辛口 Semi-dry</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 港町釧路の酒蔵。福を招く・幸を呼ぶ酒となるよう願いを込めて命名。<br>
+        <span class="lang-label en">EN</span> From the port city of Kushiro. Named with a wish to bring good fortune and happiness.<br>
+        <span class="lang-label zh">ZH</span> 来自港口城市�的路的酿酒厂。以招福纳祥的美好寓意命名。<br>
+        <span class="lang-label ko">KO</span> 항구 도시 쿠시로의 양조장. 복과 행운을 부르는 의미를 담아 이름 지어졌습니다.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        冷酒(Chilled)・常温(Room temp)・ぬる燗(Warm)・熱燗(Hot)
+      </div>
+    </div>
+
+    <!-- 二世古 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">二世古 特別純米 吟風</span>
+          <span class="drink-name-sub">倶知安／二世古酒造 ・ 吟風60</span>
+        </div>
+        <span class="drink-price">&yen;1,000 <span style="font-size:12px;color:var(--txt3);">/ 1合</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">穏やか Mild</span>
+        <span class="drink-tag">スッキリ Clean</span>
+        <span class="drink-tag">辛口 Dry</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 北海道産辛口酒の中でもトップクラスの人気酒。ニセコの名水が生む透明感のある味わい。<br>
+        <span class="lang-label en">EN</span> One of Hokkaido's most popular dry sakes. Brewed with pristine Niseko water for crystal-clear flavor.<br>
+        <span class="lang-label zh">ZH</span> 北海道辛口清酒中的顶级人气款。二世古名水酿就的清透口感。<br>
+        <span class="lang-label ko">KO</span> 홋카이도 드라이 사케 중 최고 인기. 니세코 명수로 빚은 투명한 맛.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        冷酒(Chilled)・常温(Room temp)・ぬる燗(Warm)
+      </div>
+    </div>
+
+    <!-- 久保田 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">久保田 純米大吟醸</span>
+          <span class="drink-name-sub">新潟／朝日酒造 ・ 五百万石50</span>
+        </div>
+        <span class="drink-price">&yen;1,300 <span style="font-size:12px;color:var(--txt3);">/ 1合</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">フルーティー Fruity</span>
+        <span class="drink-tag">スッキリ Clean</span>
+        <span class="drink-tag">やや甘口 Semi-sweet</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 酒処新潟の日本酒といえばこの銘柄。新しい美味しさを追求した、モダンでシャープな純米大吟醸。<br>
+        <span class="lang-label en">EN</span> The iconic Niigata brand. A modern, sharp Junmai Daiginjo pursuing new heights of flavor.<br>
+        <span class="lang-label zh">ZH</span> 说到新潟清酒就是这个品牌。追求全新美味的现代利落纯米大吟酿。<br>
+        <span class="lang-label ko">KO</span> 니이가타 사케의 대명사. 새로운 맛을 추구한 모던하고 샤프한 준마이 다이긴조.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        冷酒(Chilled) がおすすめ / Chilled recommended / 推荐冷饮 / 차갑게 추천
+      </div>
+    </div>
+
+    <!-- 獺祭 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">獺祭 純米大吟醸45</span>
+          <span class="drink-name-sub">山口 ・ 山田錦45</span>
+        </div>
+        <span class="drink-price">&yen;1,300 <span style="font-size:12px;color:var(--txt3);">/ 1合</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">フルーティー Fruity</span>
+        <span class="drink-tag">スッキリ Clean</span>
+        <span class="drink-tag">中口 Medium</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 酸味・甘味・旨味のバランスが整った、世界を代表する日本酒。<br>
+        <span class="lang-label en">EN</span> World-renowned sake with perfect balance of acidity, sweetness, and umami.<br>
+        <span class="lang-label zh">ZH</span> 酸甜鲜完美平衡的世界级日本清酒代表。<br>
+        <span class="lang-label ko">KO</span> 산미·단맛·감칠맛의 밸런스가 뛰어난, 세계를 대표하는 일본주.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        冷酒(Chilled) がおすすめ / Chilled recommended / 推荐冷饮 / 차갑게 추천
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 焼酎 ===== -->
+  <div class="drink-cat drink-sec">
+    <div class="drink-cat-title">&#x1FAD9; 焼酎 <span class="drink-cat-sub">Shochu / 烧酒 / 소주</span></div>
+
+    <!-- 佐藤 黒 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">佐藤 黒</span>
+          <span class="drink-name-sub">芋焼酎（黒麹）鹿児島／佐藤酒造</span>
+        </div>
+        <span class="drink-price">&yen;800 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">芋 Sweet Potato</span>
+        <span class="drink-tag">黒麹 Black Koji</span>
+        <span class="drink-tag">力強い Bold</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> プレミアム焼酎の一角。黒は、綺麗ながらも力強い風味のある味わい。<br>
+        <span class="lang-label en">EN</span> One of Japan's premium shochu. "Kuro" (Black) has a clean yet bold, powerful flavor.<br>
+        <span class="lang-label zh">ZH</span> 日本顶级烧酒之一。"黑"款口感干净却风味浓烈有力。<br>
+        <span class="lang-label ko">KO</span> 일본 프리미엄 소주의 대표. "쿠로"(흑)는 깔끔하면서도 힘 있는 풍미.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・お湯割り(Hot water)・水割り(Mizuwari)
+      </div>
+    </div>
+
+    <!-- 佐藤 白 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">佐藤 白</span>
+          <span class="drink-name-sub">芋焼酎（白麹）鹿児島／佐藤酒造</span>
+        </div>
+        <span class="drink-price">&yen;800 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">芋 Sweet Potato</span>
+        <span class="drink-tag">白麹 White Koji</span>
+        <span class="drink-tag">まろやか Smooth</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> プレミアム焼酎の一角。白は、地元で一番人気。やわらかくまろやかな味わい。<br>
+        <span class="lang-label en">EN</span> The most popular locally. "Shiro" (White) is soft and mellow — smooth and easy to drink.<br>
+        <span class="lang-label zh">ZH</span> 当地最受欢迎的款式。"白"款口感柔和圆润。<br>
+        <span class="lang-label ko">KO</span> 현지에서 가장 인기. "시로"(백)는 부드럽고 순한 맛.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・お湯割り(Hot water)・ソーダ割り(Soda)・水割り(Mizuwari)
+      </div>
+    </div>
+
+    <!-- 佐藤 麦 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">佐藤 麦</span>
+          <span class="drink-name-sub">麦焼酎 鹿児島／佐藤酒造</span>
+        </div>
+        <span class="drink-price">&yen;700 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-tags">
+        <span class="drink-tag">麦 Barley</span>
+        <span class="drink-tag">香ばしい Roasty</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> プレミアム焼酎の一角。麦は、ローストした麦のような香りと厚みのある味わい。<br>
+        <span class="lang-label en">EN</span> Premium barley shochu with a roasted grain aroma and rich body.<br>
+        <span class="lang-label zh">ZH</span> 顶级麦烧酒。带有烘烤大麦般的香气和醇厚口感。<br>
+        <span class="lang-label ko">KO</span> 프리미엄 보리 소주. 로스팅한 보리 향과 깊은 바디감.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・お湯割り(Hot water)・ソーダ割り(Soda)・水割り(Mizuwari)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== リキュール ===== -->
+  <div class="drink-cat drink-sec">
+    <div class="drink-cat-title">&#x1F351; リキュール <span class="drink-cat-sub">Fruit Liqueur / 果酒 / 리큐르</span></div>
+    <div style="font-size:13px;color:var(--txt2);margin-bottom:14px;line-height:1.8;">
+      <span class="lang-label ja">JA</span> 栃木・小林酒造の「鳳凰美田」シリーズ。日本酒ベースの果実リキュール。<br>
+      <span class="lang-label en">EN</span> "Houou Biden" series by Kobayashi Brewery (Tochigi). Sake-based fruit liqueurs.<br>
+      <span class="lang-label zh">ZH</span> 栃木县小林酒造的"凤凰美田"系列。以日本清酒为基底的果实利口酒。<br>
+      <span class="lang-label ko">KO</span> 도치기현 코바야시 양조장의 "호오 비덴" 시리즈. 사케 베이스 과일 리큐르.
+    </div>
+
+    <!-- 完熟もも -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">鳳凰美田 完熟もも</span>
+          <span class="drink-name-sub">Ripe Peach / 完熟桃 / 완숙 복숭아</span>
+        </div>
+        <span class="drink-price">&yen;750 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 完熟桃をたっぷり使った、ジューシーで甘い香りの一杯。<br>
+        <span class="lang-label en">EN</span> Juicy and sweet with ripe peach aroma.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・ソーダ割り(Soda)・ストレート(Straight)
+      </div>
+    </div>
+
+    <!-- 濃密みかん -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">鳳凰美田 濃密みかん</span>
+          <span class="drink-name-sub">Rich Mandarin / 浓密蜜柑 / 진한 귤</span>
+        </div>
+        <span class="drink-price">&yen;750 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> みかんの濃厚な味わいがギュッと詰まった一杯。<br>
+        <span class="lang-label en">EN</span> Rich and dense mandarin flavor packed into every sip.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・ソーダ割り(Soda)・ストレート(Straight)
+      </div>
+    </div>
+
+    <!-- ゆず -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">鳳凰美田 ゆず</span>
+          <span class="drink-name-sub">Yuzu Citrus / 柚子 / 유자</span>
+        </div>
+        <span class="drink-price">&yen;800 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 爽やかなゆずの香りが広がる、すっきりとした味わい。<br>
+        <span class="lang-label en">EN</span> Refreshing yuzu citrus aroma with a clean, crisp finish.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・ソーダ割り(Soda)・ストレート(Straight)
+      </div>
+    </div>
+
+    <!-- 秘蔵梅酒 -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">鳳凰美田 秘蔵梅酒</span>
+          <span class="drink-name-sub">Aged Plum Wine / 秘藏梅酒 / 숙성 매실주</span>
+        </div>
+        <span class="drink-price">&yen;700 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 日本酒の蔵元が仕込んだ本格梅酒。深みのある味わい。<br>
+        <span class="lang-label en">EN</span> Authentic plum wine crafted by a sake brewery. Deep, complex flavor.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・ソーダ割り(Soda)・ストレート(Straight)・お湯割り(Hot water)
+      </div>
+    </div>
+
+    <!-- レモン -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">鳳凰美田 レモン</span>
+          <span class="drink-name-sub">Lemon / 柠檬 / 레몬</span>
+        </div>
+        <span class="drink-price">&yen;750 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> フレッシュなレモンの酸味と甘みが絶妙にマッチ。<br>
+        <span class="lang-label en">EN</span> A perfect match of fresh lemon acidity and gentle sweetness.
+      </div>
+      <div class="drink-how">
+        <div class="drink-how-title">飲み方 / How to enjoy</div>
+        ロック(On the rocks)・ソーダ割り(Soda)・ストレート(Straight)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ビール・ハイボール ===== -->
+  <div class="drink-cat drink-sec">
+    <div class="drink-cat-title">&#x1F37A; ビール・ハイボール <span class="drink-cat-sub">Beer &amp; Highball / 啤酒・嗨棒 / 맥주・하이볼</span></div>
+
+    <!-- 生ビール -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">生ビール サッポロクラシック</span>
+          <span class="drink-name-sub">Draft Beer / Sapporo Classic</span>
+        </div>
+        <span class="drink-price">&yen;700</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 北海道限定の生ビール。すっきり爽やかな飲み口。<br>
+        <span class="lang-label en">EN</span> Hokkaido-exclusive draft beer. Crisp and refreshing.<br>
+        <span class="lang-label zh">ZH</span> 北海道限定生啤。清爽利落的口感。<br>
+        <span class="lang-label ko">KO</span> 홋카이도 한정 생맥주. 상쾌하고 깔끔한 맛.
+      </div>
+    </div>
+
+    <!-- 瓶ビール -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">瓶ビール 札幌ラガー</span>
+          <span class="drink-name-sub">Bottled Beer / Sapporo Lager</span>
+        </div>
+        <span class="drink-price">&yen;800</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> 札幌伝統のラガービール。しっかりとした味わい。<br>
+        <span class="lang-label en">EN</span> Traditional Sapporo lager with a full-bodied taste.<br>
+        <span class="lang-label zh">ZH</span> 札幌传统拉格啤酒。醇厚扎实的风味。<br>
+        <span class="lang-label ko">KO</span> 삿포로 전통 라거 맥주. 깊고 묵직한 맛.
+      </div>
+    </div>
+
+    <!-- 角ハイボール -->
+    <div class="drink-item">
+      <div class="drink-item-head">
+        <div>
+          <span class="drink-name-ja">角ハイボール</span>
+          <span class="drink-name-sub">Kaku Highball / Whisky &amp; Soda</span>
+        </div>
+        <span class="drink-price">&yen;600</span>
+      </div>
+      <div class="drink-desc">
+        <span class="lang-label ja">JA</span> サントリー角瓶のウイスキーソーダ割り。食事にもよく合います。<br>
+        <span class="lang-label en">EN</span> Suntory Kakubin whisky with soda. A refreshing companion to any dish.<br>
+        <span class="lang-label zh">ZH</span> 三得利角瓶威士忌加苏打水。清爽百搭的佐餐饮品。<br>
+        <span class="lang-label ko">KO</span> 산토리 카쿠빈 위스키 소다. 식사와 잘 어울리는 상쾌한 한 잔.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ソフトドリンク ===== -->
+  <div class="drink-cat drink-sec">
+    <div class="drink-cat-title">&#x1F964; ソフトドリンク <span class="drink-cat-sub">Soft Drinks / 软饮 / 소프트 드링크</span></div>
+    <div style="font-size:15px;color:var(--gold);margin-bottom:14px;">各 &yen;500</div>
+
+    <div class="drink-item" style="display:flex;flex-wrap:wrap;gap:12px 24px;padding:16px 22px;">
+      <div style="min-width:140px;">
+        <span class="drink-name-ja" style="font-size:15px;">ウーロン茶</span><br>
+        <span class="drink-name-sub">Oolong Tea / 乌龙茶 / 우롱차</span>
+      </div>
+      <div style="min-width:140px;">
+        <span class="drink-name-ja" style="font-size:15px;">緑茶</span><br>
+        <span class="drink-name-sub">Green Tea / 绿茶 / 녹차</span>
+      </div>
+      <div style="min-width:140px;">
+        <span class="drink-name-ja" style="font-size:15px;">コーラ</span><br>
+        <span class="drink-name-sub">Cola / 可乐 / 콜라</span>
+      </div>
+      <div style="min-width:140px;">
+        <span class="drink-name-ja" style="font-size:15px;">ジンジャーエール</span><br>
+        <span class="drink-name-sub">Ginger Ale / 姜汁汽水 / 진저에일</span>
+      </div>
+      <div style="min-width:140px;">
+        <span class="drink-name-ja" style="font-size:15px;">オレンジジュース</span><br>
+        <span class="drink-name-sub">Orange Juice / 橙汁 / 오렌지주스</span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ============================================================ -->
