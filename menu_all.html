@@ -368,10 +368,8 @@
 <section class="qr-section">
   <div class="qr-box">
     <div class="qr-title">SCAN FOR DETAILS</div>
-    <div class="qr-placeholder">
-      <!-- Replace this div's contents with your QR code image: -->
-      <!-- <img src="qr-code.png" alt="QR Code"> -->
-      QR CODE
+    <div class="qr-placeholder" id="qr-container">
+      <canvas id="qr-canvas"></canvas>
     </div>
     <div class="qr-msg">
       <span>各料理の詳しい楽しみ方は、QRコードをスキャンしてください</span>
@@ -1099,7 +1097,7 @@
     <div class="drink-cat-title">&#x1F376; 日本酒 <span class="drink-cat-sub">Japanese Sake / 日本清酒 / 일본주 &mdash; 1合(180ml)</span></div>
 
     <div class="drink-item">
-      <div class="drink-img white-bg"><img src="https://www.kunimare.co.jp/online_shop/upload/save_image/0729071129_5b5cea11d9c7e.png" alt="國稀"></div>
+      <div class="drink-img white-bg" style="padding:2px;"><img src="https://www.kunimare.co.jp/online_shop/upload/save_image/0729071129_5b5cea11d9c7e.png" alt="國稀" style="max-width:86px;max-height:176px;"></div>
       <div class="drink-content">
         <div class="drink-item-head">
           <div><span class="drink-name-ja">國稀 北海鬼ころし</span><br><span class="drink-name-sub">（普通酒）増毛／国稀酒造</span></div>
@@ -1285,7 +1283,7 @@
           <span class="drink-price">&yen;720</span>
         </div>
         <div class="drink-desc"><span class="lang-label ja">JA</span> 山形県を主力として青森県などの厳選した「桃」を使用。「桃」の香りや甘みだけでなく、本来の質感、果実感まで自然なままの姿を感じていただける日本酒ベースの本格リキュールです。<br><span class="lang-label en">EN</span> Made with carefully selected peaches from Yamagata &amp; Aomori. Not just peach aroma and sweetness, but the true texture and fruit sensation &mdash; a premium sake-based liqueur.<br><span class="lang-label zh">ZH</span> 精选山形县及青森县等地的优质桃子。不仅有桃子的香气和甜味，更能感受到天然的质感和果实感的正宗日本酒基底利口酒。<br><span class="lang-label ko">KO</span> 야마가타현과 아오모리현 등의 엄선된 복숭아를 사용. 복숭아의 향과 단맛뿐만 아니라 본래의 질감과 과실감까지 자연 그대로 느낄 수 있는 사케 베이스 본격 리큐르.</div>
-        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・炭酸割り(Soda)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・水割り(Mizuwari)・炭酸割り(Soda)</div>
       </div>
     </div>
 
@@ -1297,7 +1295,7 @@
           <span class="drink-price">&yen;720</span>
         </div>
         <div class="drink-desc"><span class="lang-label ja">JA</span> 厳選された温州みかんを100%使用。果肉の粒を10%以上残し、みかん凝縮した甘味と果肉のプチプチとした食感そのままをお楽しみいただけます。<br><span class="lang-label en">EN</span> 100% select Unshu mandarin with 10%+ pulp retained. Enjoy the concentrated sweetness and popping pulp texture just as nature intended.<br><span class="lang-label zh">ZH</span> 100%精选温州蜜柑。保留10%以上的果肉颗粒，可享受蜜柑浓缩的甜味和果肉的爆浆口感。<br><span class="lang-label ko">KO</span> 엄선된 온슈 밀감 100% 사용. 과육 알갱이를 10% 이상 남겨, 밀감 농축 단맛과 톡톡 터지는 과육의 식감을 그대로 즐길 수 있습니다.</div>
-        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・炭酸割り(Soda)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・水割り(Mizuwari)・炭酸割り(Soda)</div>
       </div>
     </div>
 
@@ -1309,7 +1307,7 @@
           <span class="drink-price">&yen;800</span>
         </div>
         <div class="drink-desc"><span class="lang-label ja">JA</span> 「ゆず」本来の爽やかな香りや酸味。ほのかに苦みも感じる日本酒ベースの本格リキュール。度数も13度と高くコスパも◎。<br><span class="lang-label en">EN</span> True yuzu aroma and acidity with a hint of bitterness. A premium sake-based liqueur at 13% ABV &mdash; great value.<br><span class="lang-label zh">ZH</span> 柚子原本清爽的香气和酸味。微微带有苦味的正宗日本酒基底利口酒。酒精度13度，性价比极高。<br><span class="lang-label ko">KO</span> 유자 본연의 상쾌한 향과 산미. 은은한 쓴맛도 느껴지는 사케 베이스 본격 리큐르. 도수 13도로 가성비도 좋습니다.</div>
-        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・炭酸割り(Soda)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・水割り(Mizuwari)・炭酸割り(Soda)</div>
       </div>
     </div>
 
@@ -1321,7 +1319,7 @@
           <span class="drink-price">&yen;720</span>
         </div>
         <div class="drink-desc"><span class="lang-label ja">JA</span> 栃木県産の高級梅「宮の梅」をたっぷりと使用。丹精込めて仕込んだ銘酒『鳳凰美田』の吟醸酒にじっくりと漬け込み熟成させた梅酒を、無添加のまま濾過をせずに瓶詰めした非常に贅沢な梅酒です。濃密な甘みと梅の豊かな酸味や爽やかな香りが織りなす、リッチな味わい。<br><span class="lang-label en">EN</span> Made with premium "Miya-no-Ume" plums from Tochigi, steeped and aged in Houou Biden ginjo sake. Bottled unfiltered with no additives &mdash; a truly luxurious plum wine. Rich sweetness interwoven with plum acidity and refreshing aroma.<br><span class="lang-label zh">ZH</span> 选用�的木县高级梅「宫之梅」，浸泡在精酿的凤凰美田吟酿酒中慢慢熟成。无添加、无过滤直接装瓶的极致奢华梅酒。浓郁的甜味与梅子丰富的酸味和清爽的香气交织出醇厚的口感。<br><span class="lang-label ko">KO</span> 도치기현산 고급 매실 「미야노우메」를 듬뿍 사용. 정성껏 빚은 명주 호오비덴의 긴조주에 천천히 담가 숙성시킨 매실주를 무첨가·무여과로 병입한 매우 호화로운 매실주. 진한 단맛과 매실의 풍부한 산미, 상쾌한 향이 어우러진 리치한 맛.</div>
-        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・炭酸割り(Soda)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・水割り(Mizuwari)・炭酸割り(Soda)</div>
       </div>
     </div>
 
@@ -1333,7 +1331,7 @@
           <span class="drink-price">&yen;720</span>
         </div>
         <div class="drink-desc"><span class="lang-label ja">JA</span> 厳選された広島県産の無農薬栽培レモンを使用。加熱処理をせず生のまま出荷し風味は抜群。レモンをまるごと感じられる酸味とほろ苦さ、控え目な甘さが特徴。度数5度で飲みやすく、どんな料理にもピッタリです。<br><span class="lang-label en">EN</span> Pesticide-free Hiroshima lemons, shipped fresh without heat treatment. Full lemon acidity with a pleasant bitterness and restrained sweetness. At 5% ABV, easy to drink &mdash; pairs with everything.<br><span class="lang-label zh">ZH</span> 选用广岛县产无农药栽培柠檬。不经加热处理，以生鲜状态出货，风味绝佳。能感受整颗柠檬般的酸味和微苦，甜度适中。酒精度5度，口感清爽，搭配任何料理都很合适。<br><span class="lang-label ko">KO</span> 히로시마현산 무농약 재배 레몬을 엄선 사용. 가열 처리 없이 생으로 출하하여 풍미가 뛰어남. 레몬을 통째로 느낄 수 있는 산미와 은은한 쓴맛, 절제된 단맛이 특징. 도수 5도로 마시기 쉽고 어떤 요리에도 잘 어울립니다.</div>
-        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・炭酸割り(Soda)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方</div>ロック(On the rocks)・水割り(Mizuwari)・炭酸割り(Soda)</div>
       </div>
     </div>
   </div>
@@ -1527,6 +1525,20 @@
   札幌市中央区南6条西3丁目 秋水ビル2F<br>
   TEL 011-511-7667
 </footer>
+
+<script>
+// Minimal QR Code Generator (Mode Byte, ECC-L)
+(function(){
+  function generateQR(text){
+    var size=180;
+    var api='https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&margin=0&format=png&data='+encodeURIComponent(text);
+    var container=document.getElementById('qr-container');
+    if(!container)return;
+    container.innerHTML='<img src="'+api+'" alt="QR Code" style="width:100%;height:100%;object-fit:contain;">';
+  }
+  generateQR(window.location.href);
+})();
+</script>
 
 </body>
 </html>
