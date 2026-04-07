@@ -82,7 +82,7 @@
   /* DISH CARD */
   .dish { margin-bottom:32px; }
   .dish-head { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-  .dish-num { font:400 12px var(--en); letter-spacing:4px; color:var(--gold-d); }
+  .dish-num { font:500 16px var(--serif); letter-spacing:3px; color:var(--gold); }
   .dish-ja { font:400 22px var(--serif); letter-spacing:3px; }
   .dish-sub-names { margin-bottom:14px; }
   .dish-sub-names .name-line { font:300 14px var(--en); color:var(--txt3); letter-spacing:1px; line-height:1.8; }
@@ -194,6 +194,14 @@
   .drink-img { width:90px; min-width:90px; height:180px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .drink-img img { max-width:90px; max-height:180px; object-fit:contain; border-radius:3px; filter:brightness(1.05); }
   .drink-img.white-bg { background:#fff; border-radius:6px; padding:6px; border:1px solid rgba(255,255,255,.1); }
+  /* 久保田 — 「久保田」ロゴ部分をドアップ表示 */
+  .drink-img.kubota-zoom { overflow:hidden; padding:0; }
+  .drink-img.kubota-zoom img {
+    max-width:none; max-height:none;
+    width:100%; height:auto;
+    transform:scale(2.6);
+    transform-origin:50% 36%;
+  }
   .drink-content { flex:1; min-width:0; }
   .drink-item-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
   .drink-name-ja { font:500 17px var(--serif); letter-spacing:2px; }
@@ -260,7 +268,7 @@
     .photo::after { display:none; }
 
     /* 料理名 */
-    .dish-num { font-size:12px; color:#8a7342; }
+    .dish-num { font-size:14px; color:#8a7342; font-family:'Noto Serif JP',serif; letter-spacing:2px; }
     .dish-ja { font-size:21px; letter-spacing:2px; margin-bottom:3px; }
     .dish-sub-names { margin-bottom:6px; }
     .dish-sub-names .name-line { font-size:14px; line-height:1.5; }
@@ -317,7 +325,7 @@
     .youtube-cta { display:none; }
 
     /* ドリンクメニュー */
-    .drink-header { padding:16px 10px 10px; }
+    .drink-header { padding:8px 10px 6px; page-break-after:avoid; break-after:avoid; }
     .drink-header h2 { font-size:20px; letter-spacing:4px; }
     .drink-header .drink-sub { font-size:10px; color:#8a7342; }
     .drink-header .drink-sub-zh, .drink-header .drink-sub-ko { font-size:9px; color:#666; }
@@ -335,8 +343,70 @@
     .drink-desc { font-size:10px; line-height:1.5; }
     .drink-how { font-size:10px; margin-top:4px; padding-top:4px; }
     .drink-how-title { font-size:10px; }
-    .drink-sec { page-break-inside:avoid; }
+    .drink-sec { page-break-inside:auto; }
+    .drink-item { page-break-inside:avoid; break-inside:avoid; }
+    .drink-cat-title { page-break-after:avoid; break-after:avoid; }
     .drink-item.no-img { display:block; }
+
+    /* === 日本酒：2カラムで1ページに収める＆ラベル拡大 === */
+    .cat-sake {
+      column-count:2; column-gap:10px;
+      page-break-after:always; break-after:page;
+      margin-bottom:0;
+    }
+    .cat-sake .drink-cat-title { column-span:all; -webkit-column-span:all; margin-bottom:8px; }
+    .cat-sake .drink-item {
+      display:flex; gap:8px;
+      padding:6px 8px; margin-bottom:6px;
+      break-inside:avoid; page-break-inside:avoid;
+      -webkit-column-break-inside:avoid;
+    }
+    .cat-sake .drink-img { width:72px; min-width:72px; height:140px; }
+    .cat-sake .drink-img img { max-width:72px; max-height:140px; }
+    .cat-sake .drink-content { font-size:10px; }
+    .cat-sake .drink-name-ja { font-size:12px; letter-spacing:1px; }
+    .cat-sake .drink-name-sub { font-size:8.5px; }
+    .cat-sake .drink-price { font-size:12px; }
+    .cat-sake .drink-item-head { margin-bottom:3px; gap:3px; }
+    .cat-sake .drink-tags { gap:2px; margin-bottom:3px; }
+    .cat-sake .drink-tag { font-size:8px; padding:0 3px; }
+    .cat-sake .drink-desc { display:none; }
+    .cat-sake .drink-how { font-size:8.5px; margin-top:3px; padding-top:3px; line-height:1.4; }
+    .cat-sake .drink-how-title { font-size:8.5px; }
+
+    /* === ワイン：単独1ページ・ゆったり広め === */
+    .cat-wine {
+      page-break-before:always; break-before:page;
+      page-break-after:always; break-after:page;
+    }
+    .cat-wine .drink-cat-title { font-size:18px; padding-bottom:8px; margin-bottom:18px; }
+    .cat-wine .drink-item { padding:16px 20px; margin-bottom:16px; gap:18px; }
+    .cat-wine .drink-img { width:90px; min-width:90px; height:200px; }
+    .cat-wine .drink-img img { max-width:90px; max-height:200px; }
+    .cat-wine .drink-name-ja { font-size:17px; letter-spacing:2px; }
+    .cat-wine .drink-name-sub { font-size:12px; }
+    .cat-wine .drink-price { font-size:17px; }
+    .cat-wine .drink-tag { font-size:10px; padding:2px 6px; }
+    .cat-wine .drink-desc { font-size:11px; line-height:1.7; }
+
+    /* === ビール〜水：1ページにまとめる === */
+    .cat-beer { page-break-before:always; break-before:page; }
+    .cat-beer, .cat-soft, .cat-water {
+      page-break-after:avoid; break-after:avoid;
+    }
+    .cat-beer .drink-item, .cat-water .drink-item {
+      padding:6px 10px; margin-bottom:5px; gap:10px;
+    }
+    .cat-beer .drink-img, .cat-water .drink-img {
+      width:48px; min-width:48px; height:96px;
+    }
+    .cat-beer .drink-img img, .cat-water .drink-img img {
+      max-width:48px; max-height:96px;
+    }
+    .cat-beer .drink-desc, .cat-water .drink-desc { font-size:9px; line-height:1.4; }
+    .cat-beer .drink-name-ja, .cat-water .drink-name-ja { font-size:13px; }
+    .cat-soft { margin-bottom:8px; }
+    .cat-soft .drink-cat-title, .cat-water .drink-cat-title { margin-top:6px; }
 
     /* アレルギー */
     .allergy { padding:10px; background:#f7f5f2; border:1px solid #ddd; }
@@ -414,17 +484,17 @@
     </div>
 
     <div class="flow">
-      <div class="fi"><div class="fi-n">一、先付け</div><div class="fi-e">Appetizer</div></div>
-      <div class="fi"><div class="fi-n">二、毛蟹の茶碗蒸し</div><div class="fi-e">Crab Egg Custard</div></div>
-      <div class="fi"><div class="fi-n">三、旬魚 お刺身3点盛り</div><div class="fi-e">Seasonal Sashimi</div></div>
-      <div class="fi"><div class="fi-n">四、活カニ刺身（2本）</div><div class="fi-e">Live Crab Sashimi</div></div>
-      <div class="fi"><div class="fi-n">五、カニ味噌しゃぶしゃぶ（2本）</div><div class="fi-e">Crab Miso Shabu-Shabu</div></div>
-      <div class="fi"><div class="fi-n">六、カニ味噌共和え</div><div class="fi-e">Crab Meat &times; Miso Mix</div></div>
-      <div class="fi"><div class="fi-n">七、甲羅酒</div><div class="fi-e">Hot Sake in Crab Shell</div></div>
-      <div class="fi"><div class="fi-n">八、毛蟹醤油漬け</div><div class="fi-e">Soy-Marinated Crab</div></div>
-      <div class="fi"><div class="fi-n">九、天ぷら</div><div class="fi-e">Crab &amp; Vegetable Tempura</div></div>
-      <div class="fi"><div class="fi-n">十、カニ雑炊</div><div class="fi-e">Crab Rice Porridge</div></div>
-      <div class="fi"><div class="fi-n">十一、水菓子</div><div class="fi-e">Dessert</div></div>
+      <div class="fi"><div class="fi-n">1. 先付け</div><div class="fi-e">Appetizer</div></div>
+      <div class="fi"><div class="fi-n">2. 毛蟹の茶碗蒸し</div><div class="fi-e">Crab Egg Custard</div></div>
+      <div class="fi"><div class="fi-n">3. 旬魚 お刺身3点盛り</div><div class="fi-e">Seasonal Sashimi</div></div>
+      <div class="fi"><div class="fi-n">4. 活カニ刺身（2本）</div><div class="fi-e">Live Crab Sashimi</div></div>
+      <div class="fi"><div class="fi-n">5. カニ味噌しゃぶしゃぶ（2本）</div><div class="fi-e">Crab Miso Shabu-Shabu</div></div>
+      <div class="fi"><div class="fi-n">6. カニ味噌共和え</div><div class="fi-e">Crab Meat &times; Miso Mix</div></div>
+      <div class="fi"><div class="fi-n">7. 甲羅酒</div><div class="fi-e">Hot Sake in Crab Shell</div></div>
+      <div class="fi"><div class="fi-n">8. 毛蟹醤油漬け</div><div class="fi-e">Soy-Marinated Crab</div></div>
+      <div class="fi"><div class="fi-n">9. 天ぷら</div><div class="fi-e">Crab &amp; Vegetable Tempura</div></div>
+      <div class="fi"><div class="fi-n">10. カニ雑炊</div><div class="fi-e">Crab Rice Porridge</div></div>
+      <div class="fi"><div class="fi-n">11. 水菓子</div><div class="fi-e">Dessert</div></div>
     </div>
   </div>
   <div class="youtube-cta">
@@ -440,7 +510,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">01</span></div>
+    <div class="dish-head"><span class="dish-num">1</span></div>
     <div class="dish-ja">先付け</div>
     <div class="dish-sub-names">
       <div class="name-line">Appetizer &mdash; &ldquo;Sakizuke&rdquo;</div>
@@ -505,7 +575,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">02</span></div>
+    <div class="dish-head"><span class="dish-num">2</span></div>
     <div class="dish-ja">毛蟹の茶碗蒸し</div>
     <div class="dish-sub-names">
       <div class="name-line">Horsehair Crab Chawanmushi &mdash; Savory Egg Custard</div>
@@ -570,7 +640,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">03</span></div>
+    <div class="dish-head"><span class="dish-num">3</span></div>
     <div class="dish-ja">旬魚 お刺身3点盛り</div>
     <div class="dish-sub-names">
       <div class="name-line">Seasonal Sashimi Trio</div>
@@ -596,7 +666,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">04</span></div>
+    <div class="dish-head"><span class="dish-num">4</span></div>
     <div class="dish-ja">活カニ刺身（2本）</div>
     <div class="dish-sub-names">
       <div class="name-line">Live Crab Sashimi &mdash; 2 Legs per Person</div>
@@ -657,7 +727,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">05</span></div>
+    <div class="dish-head"><span class="dish-num">5</span></div>
     <div class="dish-ja">カニ味噌しゃぶしゃぶ（2本）</div>
     <div class="dish-sub-names">
       <div class="name-line">Crab Miso Shabu-Shabu &mdash; 2 Legs per Person</div>
@@ -726,7 +796,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">06</span></div>
+    <div class="dish-head"><span class="dish-num">6</span></div>
     <div class="dish-ja">カニ味噌共和え</div>
     <div class="dish-sub-names">
       <div class="name-line">Crab Meat Mixed with Crab Miso &mdash; &ldquo;Tomo-ae&rdquo;</div>
@@ -791,7 +861,7 @@
 <!-- ============================================================ -->
 <section class="sec koura">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">07</span></div>
+    <div class="dish-head"><span class="dish-num">7</span></div>
     <div class="dish-ja">甲羅酒</div>
     <div class="dish-sub-names">
       <div class="name-line">Shell Sake &mdash; &ldquo;Koura-zake&rdquo; / Hot Sake Poured into the Crab Shell</div>
@@ -865,7 +935,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">08</span></div>
+    <div class="dish-head"><span class="dish-num">8</span></div>
     <div class="dish-ja">毛蟹醤油漬け</div>
     <div class="dish-sub-names">
       <div class="name-line">Soy-Marinated Horsehair Crab &mdash; &ldquo;Kegani Shoyu-zuke&rdquo;</div>
@@ -930,7 +1000,7 @@
 <!-- ============================================================ -->
 <section class="sec">
   <div class="dish">
-    <div class="dish-head"><span class="dish-num">09</span></div>
+    <div class="dish-head"><span class="dish-num">9</span></div>
     <div class="dish-ja">天ぷら</div>
     <div class="dish-sub-names">
       <div class="name-line">Crab &amp; Seasonal Vegetable Tempura</div>
@@ -1093,7 +1163,7 @@
   </div>
 
   <!-- ===== 日本酒 ===== -->
-  <div class="drink-cat drink-sec">
+  <div class="drink-cat drink-sec cat-sake">
     <div class="drink-cat-title">&#x1F376; 日本酒 <span class="drink-cat-sub">Japanese Sake / 日本清酒 / 일본주 &mdash; 1合(180ml)</span></div>
 
     <div class="drink-item">
@@ -1106,7 +1176,7 @@
         <div class="drink-tags">
           <span class="drink-tag">穏やか Mild</span><span class="drink-tag">スッキリ Clean</span><span class="drink-tag">辛口 Dry</span>
           <span class="drink-tag smv">日本酒度 SMV +12</span>
-          <span class="drink-tag pair">合う料理 Pairs: 三 四 五 六 八 九</span>
+          <span class="drink-tag pair">合う料理 Pairs: 3 4 5 6 8 9</span>
         </div>
         <div class="drink-desc">
           <span class="lang-label ja">JA</span> 日本最北の酒蔵。鬼ころしの名の通り、頑強な男でも酔いつぶれてしまうほどのうまい酒。<br>
@@ -1128,7 +1198,7 @@
         <div class="drink-tags">
           <span class="drink-tag">穏やか Mild</span><span class="drink-tag">スッキリ Clean</span><span class="drink-tag">やや辛口 Semi-dry</span>
           <span class="drink-tag smv">日本酒度 SMV +6</span>
-          <span class="drink-tag pair">合う料理 Pairs: 三 四 五 六 八</span>
+          <span class="drink-tag pair">合う料理 Pairs: 3 4 5 6 8</span>
         </div>
         <div class="drink-desc">
           <span class="lang-label ja">JA</span> 港町釧路の酒蔵。福を招く・幸を呼ぶ酒となるよう願いを込めて命名。<br>
@@ -1150,7 +1220,7 @@
         <div class="drink-tags">
           <span class="drink-tag">穏やか Mild</span><span class="drink-tag">スッキリ Clean</span><span class="drink-tag">辛口 Dry</span>
           <span class="drink-tag smv">日本酒度 SMV +8</span>
-          <span class="drink-tag pair">合う料理 Pairs: 五 六 九</span>
+          <span class="drink-tag pair">合う料理 Pairs: 5 6 9</span>
         </div>
         <div class="drink-desc">
           <span class="lang-label ja">JA</span> 北海道産辛口酒の中でもトップクラスの人気酒。ニセコの名水が生む透明感のある味わい。<br>
@@ -1163,7 +1233,7 @@
     </div>
 
     <div class="drink-item">
-      <div class="drink-img"><img src="https://www.asahi-shuzo.co.jp/_src/89169116/kubota_newjdg_main.jpg?v=1773276757504" alt="久保田"></div>
+      <div class="drink-img white-bg kubota-zoom"><img src="https://makeshop-multi-images.akamaized.net/kimijimaya/itemimages/000000001961_AVKNvLI.jpg" alt="久保田 純米大吟醸"></div>
       <div class="drink-content">
         <div class="drink-item-head">
           <div><span class="drink-name-ja">久保田 純米大吟醸</span><br><span class="drink-name-sub">新潟／朝日酒造 ・ 五百万石50</span></div>
@@ -1172,7 +1242,7 @@
         <div class="drink-tags">
           <span class="drink-tag">フルーティー Fruity</span><span class="drink-tag">スッキリ Clean</span><span class="drink-tag">やや甘口 Semi-sweet</span>
           <span class="drink-tag smv">日本酒度 SMV +2</span>
-          <span class="drink-tag pair">合う料理 Pairs: 一 二 三 四 十</span>
+          <span class="drink-tag pair">合う料理 Pairs: 1 2 3 4 10</span>
         </div>
         <div class="drink-desc">
           <span class="lang-label ja">JA</span> 酒処新潟といえばこの銘柄。モダンでシャープな純米大吟醸。<br>
@@ -1193,7 +1263,7 @@
         </div>
         <div class="drink-tags">
           <span class="drink-tag">フルーティー Fruity</span><span class="drink-tag">スッキリ Clean</span><span class="drink-tag">中口 Medium</span>
-          <span class="drink-tag pair">合う料理 Pairs: 一 二 三 四 十</span>
+          <span class="drink-tag pair">合う料理 Pairs: 1 2 3 4 10</span>
         </div>
         <div class="drink-desc">
           <span class="lang-label ja">JA</span> 酸味・甘味・旨味のバランスが整った、世界を代表する日本酒。<br>
@@ -1224,7 +1294,7 @@
           <span class="lang-label zh">ZH</span> 日本顶级烧酒之一。"黑"款口感干净却风味浓烈有力。<br>
           <span class="lang-label ko">KO</span> 일본 프리미엄 소주의 대표. "쿠로"(흑)는 깔끔하면서도 힘 있는 풍미.
         </div>
-        <div class="drink-how"><div class="drink-how-title">飲み方 / How to enjoy</div>ロック(On the rocks)・お湯割り(Hot water)・水割り(Mizuwari)</div>
+        <div class="drink-how"><div class="drink-how-title">飲み方 / How to enjoy</div>ロック(On the rocks)・お湯割り(Hot water)・ソーダ割り(Soda)・水割り(Mizuwari)</div>
       </div>
     </div>
 
@@ -1250,8 +1320,8 @@
       <div class="drink-img"><img src="https://tshop.r10s.jp/sake-shindobad/cabinet/mugi720/satou-mugi72-a.jpg" alt="佐藤 麦"></div>
       <div class="drink-content">
         <div class="drink-item-head">
-          <div><span class="drink-name-ja">佐藤 麦</span><br><span class="drink-name-sub">麦焼酎（麹仕込）鹿児島／佐藤酒造</span></div>
-          <span class="drink-price">&yen;750 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
+          <div><span class="drink-name-ja">佐藤 麦</span><br><span class="drink-name-sub">麦焼酎（白麹仕込）鹿児島／佐藤酒造</span></div>
+          <span class="drink-price">&yen;880 <span style="font-size:12px;color:var(--txt3);">/ 1杯</span></span>
         </div>
         <div class="drink-tags"><span class="drink-tag">麦 Barley</span><span class="drink-tag">香ばしい Roasty</span></div>
         <div class="drink-desc">
@@ -1337,7 +1407,7 @@
   </div>
 
   <!-- ===== ワイン ===== -->
-  <div class="drink-cat drink-sec">
+  <div class="drink-cat drink-sec cat-wine">
     <div class="drink-cat-title">&#x1F377; ワイン <span class="drink-cat-sub">Wine / 葡萄酒 / 와인</span></div>
 
     <div class="drink-item">
@@ -1376,7 +1446,7 @@
   </div>
 
   <!-- ===== ビール・ハイボール ===== -->
-  <div class="drink-cat drink-sec">
+  <div class="drink-cat drink-sec cat-beer">
     <div class="drink-cat-title">&#x1F37A; ビール・ハイボール <span class="drink-cat-sub">Beer &amp; Highball / 啤酒・嗨棒 / 맥주・하이볼</span></div>
 
     <div class="drink-item">
@@ -1429,7 +1499,7 @@
   </div>
 
   <!-- ===== ソフトドリンク ===== -->
-  <div class="drink-cat drink-sec">
+  <div class="drink-cat drink-sec cat-soft">
     <div class="drink-cat-title">&#x1F964; ソフトドリンク <span class="drink-cat-sub">Soft Drinks / 软饮 / 소프트 드링크</span></div>
     <div style="font-size:15px;color:var(--gold);margin-bottom:14px;">各 &yen;500</div>
 
@@ -1458,7 +1528,7 @@
   </div>
 
   <!-- ===== 水 ===== -->
-  <div class="drink-cat drink-sec">
+  <div class="drink-cat drink-sec cat-water">
     <div class="drink-cat-title">&#x1F4A7; お水 <span class="drink-cat-sub">Water / 水 / 물</span></div>
     <div class="drink-item">
       <div class="drink-img"><img src="https://haneda-shopping.jp/img/JAT/goods/L/HKD1172051_L.jpg" alt="大雪山の天然水"></div>
