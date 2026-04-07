@@ -194,14 +194,6 @@
   .drink-img { width:90px; min-width:90px; height:180px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .drink-img img { max-width:90px; max-height:180px; object-fit:contain; border-radius:3px; filter:brightness(1.05); }
   .drink-img.white-bg { background:#fff; border-radius:6px; padding:6px; border:1px solid rgba(255,255,255,.1); }
-  /* 久保田 — 「久保田」ロゴ部分をドアップ表示 */
-  .drink-img.kubota-zoom { overflow:hidden; padding:0; }
-  .drink-img.kubota-zoom img {
-    max-width:none; max-height:none;
-    width:100%; height:auto;
-    transform:scale(2.6);
-    transform-origin:50% 36%;
-  }
   .drink-content { flex:1; min-width:0; }
   .drink-item-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
   .drink-name-ja { font:500 17px var(--serif); letter-spacing:2px; }
@@ -1233,7 +1225,7 @@
     </div>
 
     <div class="drink-item">
-      <div class="drink-img white-bg kubota-zoom"><img src="https://makeshop-multi-images.akamaized.net/kimijimaya/itemimages/000000001961_AVKNvLI.jpg" alt="久保田 純米大吟醸"></div>
+      <div class="drink-img white-bg"><img src="kubota.jpg" alt="久保田 純米大吟醸"></div>
       <div class="drink-content">
         <div class="drink-item-head">
           <div><span class="drink-name-ja">久保田 純米大吟醸</span><br><span class="drink-name-sub">新潟／朝日酒造 ・ 五百万石50</span></div>
